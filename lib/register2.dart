@@ -37,23 +37,31 @@ class _RegisterPageState extends State<Register2Page> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Container(
+    final bottomSpace = MediaQuery.of(context).viewInsets.bottom;
+    return GestureDetector(
+      // home: Container(
+        onTap: () {
+          FocusScope.of(context).unfocus(); // キーボードを閉じる
+        },
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
             title: Center(
               child: Text("アカウント新規登録"),
             ),
+            titleTextStyle: TextStyle(fontSize: 20,color: Colors.black,),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.arrow_back,color: Colors.black,),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
           ),
 
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50.0), // 左右のパディング
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 50.0).copyWith(bottom: bottomSpace), // 左右のパディング
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -88,7 +96,7 @@ class _RegisterPageState extends State<Register2Page> {
                             return null;
                           },
                           onSaved: (value) {
-                            year = value ?? '';
+                            month = value ?? '';
                           },
                         ),
                       ),
@@ -105,7 +113,7 @@ class _RegisterPageState extends State<Register2Page> {
                             return null;
                           },
                           onSaved: (value) {
-                            year = value ?? '';
+                            day = value ?? '';
                           },
                         ),
                       ),
@@ -121,7 +129,7 @@ class _RegisterPageState extends State<Register2Page> {
                     return null;
                   },
                   onSaved: (value) {
-                    year = value ?? '';
+                    password = value ?? '';
                   },
                 ),
                 TextFormField(
@@ -133,7 +141,7 @@ class _RegisterPageState extends State<Register2Page> {
                     return null;
                   },
                   onSaved: (value) {
-                    year = value ?? '';
+                    confirmPassword = value ?? '';
                   },
                 ),
                 Align(
@@ -156,7 +164,7 @@ class _RegisterPageState extends State<Register2Page> {
             ),
           ),
         ),
-      ),
+      // ),
     );
   }
 }
