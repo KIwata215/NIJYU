@@ -16,7 +16,7 @@ class Loginpage extends State<MyHomePage>{
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 48.h),
+              padding: EdgeInsets.only(top: 48.h,bottom: 35.h),
               child: Container(
               child: Text(
                 'ログイン',
@@ -27,50 +27,132 @@ class Loginpage extends State<MyHomePage>{
                 ),
               ),
             ),
-            FloatingActionButton(
-              onPressed: (){
-                Navigator.push(context,
-                MaterialPageRoute(builder: (context)=> Register2Page()),
-                );
-              },
-              child: Icon(Icons.add),
+            Padding(
+              padding: EdgeInsets.only(bottom: 25.h),
+              child: Container(
+                child: Text(
+                  'ログイン方法を選択してください',
+                  style: TextStyle(
+                    fontSize: 8.sp
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 15.h),
+              child:Button(
+                height: 45,
+                width: 400, 
+                backgroundColor: Colors.white,
+                text: 'メールアドレス', 
+                textColor: Colors.black,
+                onpress: () { 
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => Register2Page()));
+                 },
+                iconheight: 75.h, 
+                iconwidth: 75.h, 
+                image: 'assets/images/Mailicon.png',
+              )
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 15.h),
+              child:Button(
+                height: 45,
+                width: 400, 
+                backgroundColor: Colors.white,
+                text: 'Google', 
+                textColor: Colors.black,
+                onpress: () { 
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => Register2Page()));
+                 },
+                iconheight: 75.h, 
+                iconwidth: 75.h, 
+                image: 'assets/images/Googleicon.png',
+              )
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 5.h),
+              child:Button(
+                height: 45,
+                width: 400, 
+                backgroundColor: Colors.black,
+                text: 'Apple', 
+                textColor: Colors.white,
+                onpress: () { 
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => Register2Page()));
+                 },
+                iconheight: 75.h, 
+                iconwidth: 75.h, 
+                image: 'assets/images/appleicon.png',
+              )
             ),
           ],
         ),
       ),
     );
   }
-
 }
-// class _MyHomePageState extends State<MyHomePage> {
-  
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(widget.title),
-//       ),
-//       body: ScreenUtilInit(
-//         //デザイン原案におけるサイズ
-//         designSize: Size(393,852),
-//         child: Center(
-//           child: Column(
 
-//           ),
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         // onPressed: _incrementCounter,
-//         onPressed: () {
-//           Navigator.push(
-//             context,
-//             MaterialPageRoute(builder: (context) => Register2Page()),
-//           );
-//         },
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ), 
-//     );
-//   }
-// }
+
+class Button extends StatelessWidget {
+  final String text;
+  final GestureTapCallback onpress;
+  final double height;
+  final double width;
+  final double iconheight;
+  final double iconwidth;
+  final String image;
+  final Color backgroundColor; // 背景色プロパティ
+  final Color textColor; // 文字色プロパティ
+
+  Button({
+    required this.text,
+    required this.onpress,
+    required this.height,
+    required this.width,
+    required this.iconheight,
+    required this.iconwidth,
+    required this.image,
+    required this.backgroundColor, // 背景色を受け取る
+    required this.textColor, // 文字色を受け取る
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      height: height,
+      child: ElevatedButton(
+        onPressed: onpress,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor, // 背景色を設定
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.r), // ボタンの角の丸み
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start, // アイコンを左寄せ
+          mainAxisSize: MainAxisSize.min,
+          children: [   
+            Image.asset(
+              image,
+              width: iconwidth,
+              height: iconheight,
+            ),
+            Expanded(
+              child: Text(
+                text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  color: textColor, // 文字色を設定
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
