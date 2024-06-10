@@ -104,7 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: <Widget>[
             TextButton(onPressed: () {}, child: Text('button')),
             IconButton(
@@ -112,6 +111,11 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icon(Icons.favorite),
               color: Colors.pink,
             ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              IconButton(onPressed: () {}, icon: Icon(Icons.favorite)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.thumb_up)),
+              IconButton(onPressed: () {}, icon: Icon(Icons.mail))
+            ]),
             Text('TextAlign.right', style: TextStyle(color: Colors.red)),
             Text(
               'You have pushed the button this many times:',
@@ -123,6 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
