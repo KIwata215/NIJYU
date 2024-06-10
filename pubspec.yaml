@@ -53,6 +53,11 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: Zenkaku
+      fonts:
+        - asset: assets/fonts/Zen_Kaku_Gothic/ZenKakuGothicNew-Bold.ttf
+          weight: 700
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
