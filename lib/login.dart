@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import "package:bordered_text/bordered_text.dart";
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:nijyu/test_nextPage.dart';
+
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -10,6 +14,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class Loginpage extends State<MyHomePage> {
+
+  Future<UserCredential> signInWithGoogle() async {
+  // Trigger the authentication flow
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+  // Obtain the auth details from the request
+  final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+  // Create a new credential
+  final credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth?.accessToken,
+    idToken: googleAuth?.idToken,
+  );
+
+  // Once signed in, return the UserCredential
+  return await FirebaseAuth.instance.signInWithCredential(credential);
+}
+// Googleアカウントの表示名
+  String _displayName = "";
+  static final googleLogin = GoogleSignIn(scopes: [
+    'email',
+    'https://www.googleapis.com/auth/contacts.readonly',
+  ]);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,6 +95,7 @@ class Loginpage extends State<MyHomePage> {
                   text: 'メールアドレス',
                   textColor: Colors.black,
                   onpress: () {
+
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
@@ -86,11 +114,28 @@ class Loginpage extends State<MyHomePage> {
                   backgroundColor: Colors.white,
                   text: 'Google',
                   textColor: Colors.black,
-                  onpress: () {
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => Register2Page()));
+                  onpress: () async {
+                    // Google認証
+                    GoogleSignInAccount? signinAccount = await googleLogin.signIn();
+                    if (signinAccount == null) return;
+                    GoogleSignInAuthentication auth =
+                        await signinAccount.authentication;
+                    final OAuthCredential credential = GoogleAuthProvider.credential(
+                      idToken: auth.idToken,
+                      accessToken: auth.accessToken,
+                    );
+                    // User? user =
+                    //   (await FirebaseAuth.instance.signInWithCredential(credential)).user;
+                    // if (user != null) {
+                    //   setState(() {
+                    //     // 画面を更新
+                    //     _displayName = user.displayName!;
+                    //   });
+                    // }
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => test_nextPage()));
                   },
                   iconheight: 75.h,
                   iconwidth: 75.h,
