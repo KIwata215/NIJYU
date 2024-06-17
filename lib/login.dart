@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nijyu/register1.dart';
 import 'package:nijyu/register2.dart';
 import 'package:bordered_text/bordered_text.dart';
 
@@ -104,13 +105,13 @@ class Loginpage extends State<MyHomePage> {
                   height: 45,
                   width: 400,
                   backgroundColor: Colors.black,
-                  text: 'Apple',
+                  text: '新規登録',
                   textColor: Colors.white,
                   onpress: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Register2Page()));
+                            builder: (context) => Register1()));
                   },
                   iconheight: 75.h,
                   iconwidth: 75.h,
