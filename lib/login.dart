@@ -104,7 +104,7 @@ class Loginpage extends State<MyHomePage> {
                   height: 45,
                   width: 400,
                   backgroundColor: Colors.black,
-                  text: 'Apple',
+                  text: '新規登録',
                   textColor: Colors.white,
                   onpress: () {
                     Navigator.push(
