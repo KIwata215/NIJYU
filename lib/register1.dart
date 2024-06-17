@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-class register1 extends StatelessWidget {
+class Register1 extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
