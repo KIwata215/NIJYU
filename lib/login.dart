@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import "package:bordered_text/bordered_text.dart";
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:nijyu/email_login.dart';
 import 'package:nijyu/test_nextPage.dart';
 
 
@@ -95,11 +96,10 @@ class Loginpage extends State<MyHomePage> {
                   text: 'メールアドレス',
                   textColor: Colors.black,
                   onpress: () {
-
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => Register2Page()));
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EmailLoginPage()));
                   },
                   iconheight: 75.h,
                   iconwidth: 75.h,
