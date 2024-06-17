@@ -38,6 +38,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
 
 dev_dependencies:
+  bordered_text: ^2.0.0
   flutter_test:
     sdk: flutter
 
