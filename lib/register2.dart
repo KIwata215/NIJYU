@@ -45,6 +45,26 @@ class _RegisterPageState extends State<Register2Page> {
   Widget build(BuildContext context) {
     final bottomSpace = MediaQuery.of(context).viewInsets.bottom;
 
+    var textFormField = TextFormField(
+      decoration: InputDecoration(
+        labelText: '月',
+        labelStyle: TextStyle(color: Colors.black26),
+        fillColor: Colors.blueGrey[50], // 背景色の変更
+        filled: true,
+      ),
+      validator: (value) {
+        SizedBox(
+          height: 20.h,
+        );
+        if (value == null || value.isEmpty) {
+          return '月を入力してください';
+        }
+        return null;
+      },
+      onSaved: (value) {
+        month = value ?? '';
+      },
+    );
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus(); // キーボードを閉じる
@@ -79,7 +99,8 @@ class _RegisterPageState extends State<Register2Page> {
               ),
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 200.0).copyWith(bottom: bottomSpace),
+                  padding: const EdgeInsets.symmetric(horizontal: 200.0)
+                      .copyWith(bottom: bottomSpace),
                   child: Form(
                     key: _formKey,
                     child: Column(
@@ -118,83 +139,72 @@ class _RegisterPageState extends State<Register2Page> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.only(right: 30.0), // フィールド間のパディング
-                                child: SizedBox(
-                                  height: 40.h,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      labelText: '年',
-                                      labelStyle: TextStyle(color: Colors.black26),
-                                      fillColor: Colors.blueGrey[50], // 背景色の変更
-                                      filled: true,
+                                  padding: const EdgeInsets.only(
+                                      right: 30.0), // フィールド間のパディング
+                                  child: SizedBox(
+                                    height: 40.h,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                        labelText: '年',
+                                        labelStyle:
+                                            TextStyle(color: Colors.black26),
+                                        fillColor:
+                                            Colors.blueGrey[50], // 背景色の変更
+                                        filled: true,
+                                      ),
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return '年を入力してください';
+                                        }
+                                        return null;
+                                      },
+                                      onSaved: (value) {
+                                        year = value ?? '';
+                                      },
                                     ),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return '年を入力してください';
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (value) {
-                                      year = value ?? '';
-                                    },
-                                  ),
-                                )
-                              ),
+                                  )),
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 15.0), // フィールド間のパディング
-                                child: SizedBox(////エラーメッセージバグ
-                                  height: 40.h,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      labelText: '月',
-                                      labelStyle: TextStyle(color: Colors.black26),
-                                      fillColor: Colors.blueGrey[50], // 背景色の変更
-                                      filled: true,
-                                    ),
-                                    validator: (value) {
-                                      SizedBox(height: 20.h,);
-                                      if (value == null || value.isEmpty) {
-                                        return '月を入力してください';
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (value) {
-                                      month = value ?? '';
-                                    },
-                                  ),
-                                )
-                              ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 15.0), // フィールド間のパディング
+                                  child: SizedBox(
+                                    ////エラーメッセージバグ
+                                    height: 40.h,
+                                    child: textFormField,
+                                  )),
                             ),
                             Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 30.0), // フィールド間のパディング
-                                child: SizedBox(
-                                  height: 40.h,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                      labelText: '日',
-                                      labelStyle: TextStyle(color: Colors.black26),
-                                      fillColor: Colors.blueGrey[50], // 背景色の変更
-                                      filled: true,
-                                    ),
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return '日を入力してください';
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (value) {
-                                      day = value ?? '';
-                                    },
+                                child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 30.0), // フィールド間のパディング
+                              child: SizedBox(
+                                height: 40.h,
+                                child: TextFormField(
+                                  decoration: InputDecoration(
+                                    labelText: '日',
+                                    labelStyle:
+                                        TextStyle(color: Colors.black26),
+                                    fillColor: Colors.blueGrey[50], // 背景色の変更
+                                    filled: true,
                                   ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return '日を入力してください';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    day = value ?? '';
+                                  },
                                 ),
-                              )
-                            ),
+                              ),
+                            )),
                           ],
                         ),
-                        SizedBox(height: 20.h,),
+                        SizedBox(
+                          height: 20.h,
+                        ),
                         Align(
                           alignment: Alignment.bottomLeft,
                           child: BorderedText(
@@ -278,44 +288,45 @@ class _RegisterPageState extends State<Register2Page> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(right: 70.0), //画面右からのパディング
-                child: Align(
-                  alignment: Alignment.bottomRight, //右下に配置
-                  child:SizedBox(
-                    width: 120.h,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          _formKey.currentState?.save();
-                          // 次の画面に遷移
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => NextPage()),
-                          // );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white, // ボタンの背景色
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5), // 角を少し丸くする
+                  padding: EdgeInsets.only(right: 70.0), //画面右からのパディング
+                  child: Align(
+                    alignment: Alignment.bottomRight, //右下に配置
+                    child: SizedBox(
+                      width: 120.h,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            _formKey.currentState?.save();
+                            // 次の画面に遷移
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => NextPage()),
+                            // );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white, // ボタンの背景色
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5), // 角を少し丸くする
+                          ),
                         ),
-                      ),
-                      child: BorderedText(
-                        strokeWidth: 1.0.sp, // 縁の太さ
-                        strokeColor: Colors.black, // 縁の色
-                        child: Text(
-                          '次へ',
-                          style: TextStyle(
-                            fontSize: 7.sp,
-                            color: Colors.white, // テキストの色
+                        child: BorderedText(
+                          strokeWidth: 1.0.sp, // 縁の太さ
+                          strokeColor: Colors.black, // 縁の色
+                          child: Text(
+                            '次へ',
+                            style: TextStyle(
+                              fontSize: 7.sp,
+                              color: Colors.white, // テキストの色
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                )
-              ),
-              SizedBox(height: 15.h,)
+                  )),
+              SizedBox(
+                height: 15.h,
+              )
             ],
           ),
         ),
