@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bordered_text/bordered_text.dart';
+import 'package:nijyu/test.dart';
 
 class SelectPage extends StatefulWidget {
   const SelectPage({super.key});
@@ -129,37 +130,70 @@ class _SelectPage extends State<SelectPage> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(top: 30.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [  
-                    BorderedText(
-                      strokeWidth: 3.0.sp,
-                      strokeColor: Colors.black,
-                      child: Text(
-                        "お家で手持ちのお酒を選ぶ",
-                        style: TextStyle(
-                          fontSize: 8.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                padding: EdgeInsets.only(top: 15.h),
+                child:BorderedText(
+                  strokeWidth: 3.0.sp,
+                  strokeColor: Colors.black,
+                  child: Text(
+                    "お家で手持ちのお酒を選ぶ",
+                    style: TextStyle(
+                      fontSize: 8.sp,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 30.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.all(0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context, 
+                        MaterialPageRoute(
+                          builder: (context) => WalkingAnimation() 
+                      ));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            Color(0xff43BBEF),
+                            Color(0xffA1C7D7),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: BorderedText(
+                          strokeWidth: 3.0.sp,
+                          strokeColor: Colors.white,
+                          child: Text(
+                            '次へ',
+                            style: TextStyle(
+                              fontSize: 8.sp,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(right: 40.w ))
-                     
-                  ],
-                ),
+                  ),
+                ],
               ),
-              // Padding(
-              //   padding: EdgeInsets.symmetric(horizontal: 30.w),
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.end,
-              //     children: [
-              //       ElevatedButton(onPressed: (){},
-              //       child: Text("次へ"))
-              //     ],
-              //   ),
-              // )
+              ),
             ],
           ),
         ),
