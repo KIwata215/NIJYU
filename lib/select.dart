@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bordered_text/bordered_text.dart';
-import 'package:nijyu/test.dart';
+import 'package:nijyu/attention.dart';
 
 class SelectPage extends StatefulWidget {
   const SelectPage({super.key});
@@ -11,6 +11,7 @@ class SelectPage extends StatefulWidget {
 }
 
 class _SelectPage extends State<SelectPage> {
+  //home・storeimageのボタンが押されたときflag
   bool _isTappedHome = false;
   bool _isTappedStore = false;
 
@@ -27,6 +28,25 @@ class _SelectPage extends State<SelectPage> {
       if (_isTappedStore) _isTappedHome = false;
     });
   }
+   void _handleNextButtonPressed() {
+    if (!_isTappedHome && !_isTappedStore) {
+
+      // 両方が押されていない場合の処理
+      print('いずれかのオプションを選択してください。');
+    } else if (_isTappedHome) {
+      // Navigator.push(
+      //   context,MaterialPageRoute(
+      //     builder: (context) => Attention()));
+      
+    } else if (_isTappedStore) {
+      // Storeが押されている場合の処理
+      Navigator.push(
+        context,MaterialPageRoute(
+          builder: (context) => Attention()));
+      print('お店でワイワイが選択されました。');
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +65,9 @@ class _SelectPage extends State<SelectPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent, // 背景色を透明にする
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(80.0.h),
+          preferredSize: Size.fromHeight(60.0.h),
           child: Padding(
-            padding: EdgeInsets.only(top: 50.h),
+            padding: EdgeInsets.only(top: 30.h),
             child: AppBar(
               backgroundColor: Colors.transparent, // 背景色を透明にする
               title: BorderedText(
@@ -68,7 +88,7 @@ class _SelectPage extends State<SelectPage> {
         body: Center(
           child: Column(
             children: [
-              Padding(padding: EdgeInsets.only(top: 10.h)),
+              // Padding(padding: EdgeInsets.only(top: 10.h)),
               Row(
                 children: [
                   Padding(padding: EdgeInsets.only(left: 75.w)),
@@ -77,6 +97,8 @@ class _SelectPage extends State<SelectPage> {
                       InkWell(
                         onTap: _onTapHome,
                         child: Container(
+                          margin: EdgeInsets.all(5.h),
+                          padding: EdgeInsets.all(5.h),
                           decoration: BoxDecoration(
                             border: _isTappedHome ?
                             Border.all(color:Colors.white ,width: 1.w,)
@@ -105,6 +127,8 @@ class _SelectPage extends State<SelectPage> {
                       InkWell(
                         onTap: _onTapStore,
                         child: Container(
+                          margin: EdgeInsets.all(5.h),
+                          padding: EdgeInsets.all(5.h),
                           decoration: BoxDecoration(
                             border: _isTappedStore ?
                             Border.all(color:Colors.white ,width: 1.w,)
@@ -130,7 +154,7 @@ class _SelectPage extends State<SelectPage> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(top: 15.h),
+                padding: EdgeInsets.only(top: 5.h),
                 child:BorderedText(
                   strokeWidth: 3.0.sp,
                   strokeColor: Colors.black,
@@ -144,6 +168,7 @@ class _SelectPage extends State<SelectPage> {
                   ),
                 ),
               ),
+
               Padding(padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -155,24 +180,21 @@ class _SelectPage extends State<SelectPage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(
-                          builder: (context) => WalkingAnimation() 
-                      ));
-                    },
+                    onPressed:_handleNextButtonPressed,
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        gradient: (_isTappedHome || _isTappedStore)
+                        ?LinearGradient(
                           colors: <Color>[
                             Color(0xff43BBEF),
                             Color(0xffA1C7D7),
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                        ),
+                        ) :null,
+                        color: !_isTappedHome && !_isTappedStore ?
+                        Colors.white: null,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
