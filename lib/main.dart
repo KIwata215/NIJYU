@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nijyu/Login.dart';
+import 'package:nijyu/start.dart';
 
 void main() {
   //画面横向き固定
@@ -10,7 +10,7 @@ void main() {
     DeviceOrientation.landscapeLeft,
   DeviceOrientation.landscapeRight
   ]).then( (_){
-    runApp(MyApp());
+    runApp(const MyApp());
   });
 }
 
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           theme:ThemeData(
             useMaterial3: true,
           ) ,
-          home: const MyHomePage(),
+          home:  Start(),
           title: 'LoginPage',
         );
       },

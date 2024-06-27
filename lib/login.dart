@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nijyu/register1.dart';
+import 'package:nijyu/email_login.dart';
 import 'package:nijyu/register2.dart';
 import 'package:bordered_text/bordered_text.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class Login extends StatefulWidget {
 
   @override
-  State<MyHomePage> createState() => Loginpage();
+  State<Login> createState() => Loginpage();
 }
 
-class Loginpage extends State<MyHomePage> {
+class Loginpage extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,28 +26,40 @@ class Loginpage extends State<MyHomePage> {
         ),
       ),
       child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(140.0.h),
+          child: Padding(
+            padding: EdgeInsets.only(top: 100.0.h),
+            child: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back_ios, color: Colors.white),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            title: BorderedText(
+                strokeWidth: 3.0.sp, // 縁の太さ
+                strokeColor: Colors.black, // 縁の色
+                child: Text(
+                  'ログイン',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    color: Colors.white, // テキストの色
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+          ),
+          ),
+        ),
         backgroundColor: Colors.transparent, // 背景色を透明にする
         body: Center(
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 48.h, bottom: 35.h),
-                child: BorderedText(
-                  strokeWidth: 3.0.sp, // 縁の太さ
-                  strokeColor: Colors.black, // 縁の色
-                  child: Text(
-                    'ログイン',
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      color: Colors.white, // テキストの色
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 25.h),
-                child: BorderedText(
+              SizedBox(height: 45.h,),
+              BorderedText(
                   strokeWidth: 3.0.sp, // 縁の太さ
                   strokeColor: Colors.black, // 縁の色
                   child: Text(
@@ -60,10 +71,8 @@ class Loginpage extends State<MyHomePage> {
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 15.h),
-                child: Button(
+              SizedBox(height: 35.h,),
+              Button(
                   height: 45,
                   width: 400,
                   backgroundColor: Colors.white,
@@ -73,16 +82,14 @@ class Loginpage extends State<MyHomePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Register2Page()));
+                            builder: (context) => Email_Login()));
                   },
                   iconheight: 75.h,
                   iconwidth: 75.h,
                   image: 'assets/images/Mailicon.png',
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 15.h),
-                child: Button(
+              SizedBox(height: 25.h,),
+              Button(
                   height: 45,
                   width: 400,
                   backgroundColor: Colors.white,
@@ -98,26 +105,6 @@ class Loginpage extends State<MyHomePage> {
                   iconwidth: 75.h,
                   image: 'assets/images/Googleicon.png',
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 5.h),
-                child: Button(
-                  height: 45,
-                  width: 400,
-                  backgroundColor: Colors.black,
-                  text: '新規登録',
-                  textColor: Colors.white,
-                  onpress: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Register1()));
-                  },
-                  iconheight: 75.h,
-                  iconwidth: 75.h,
-                  image: 'assets/images/appleicon.png',
-                ),
-              ),
             ],
           ),
         ),
