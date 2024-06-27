@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:nijyu/constants/player.dart';
 
 // プレイヤーの位置管理
 class PlayerProvider with ChangeNotifier {
+  List<Player> _players = [];
   int _position = 0; // プレイヤーの位置
 
+  List<Player> get players => _players;
   int get position => _position; // 現在地を返す
+
+  void setPlayers(List<Player> players) {
+    _players = players;
+    notifyListeners();
+  }
 
   void movePlayer(int steps) {
     _position += steps;

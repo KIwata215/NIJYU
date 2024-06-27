@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:nijyu/components/event_dialog.dart';
+import 'package:nijyu/constants/times.dart';
 import 'package:nijyu/providers/player_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,8 @@ class _MoveMathState extends State<MoveMath>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(milliseconds: 3000), // 3秒かけて動かす
+      duration: Duration(
+          milliseconds: AnimationTimes.animationDurationMillis), // 3秒かけて動かす
       vsync: this,
     );
 

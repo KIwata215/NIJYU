@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/components/move_math.dart';
 import 'package:nijyu/components/sgoroku.dart';
+import 'package:nijyu/constants/player.dart';
 import 'package:nijyu/providers/player_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -53,19 +54,27 @@ class MoveMathScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final players = Provider.of<PlayerProvider>(context).players;
     return Scaffold(
-      body: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: MoveMath(),
-          ),
-          Expanded(
-            flex: 3,
-            child: SugorokuGame(),
-          ),
-        ],
-      ),
+      body: Row(children: [
+        Expanded(
+          flex: 2,
+          child: MoveMath(),
+        ),
+        // Column(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        Expanded(
+          flex: 3,
+          child: SugorokuGame(),
+        ),
+        // Text(
+        //   "参加人数: ${players.length}",
+        //   style: TextStyle(),
+        // )
+        //   ],
+        // ),
+      ]),
     );
   }
 }

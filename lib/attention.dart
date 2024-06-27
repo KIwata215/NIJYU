@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bordered_text/bordered_text.dart';
-class Attention extends StatefulWidget{
+import 'package:nijyu/views/member_select_screen.dart';
+
+class Attention extends StatefulWidget {
   const Attention({super.key});
   @override
-  State<StatefulWidget> createState()  => _Attention();
-
+  State<StatefulWidget> createState() => _Attention();
 }
-class _Attention extends State<Attention>{
+
+class _Attention extends State<Attention> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,15 +26,18 @@ class _Attention extends State<Attention>{
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,  
+        backgroundColor: Colors.transparent,
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Container(
                 height: 350.h,
                 margin: EdgeInsets.symmetric(horizontal: 30.w),
-                 padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),  // パディングの調整
+                padding: EdgeInsets.symmetric(
+                    vertical: 20.h, horizontal: 20.w), // パディングの調整
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(5.sp),
@@ -47,7 +52,9 @@ class _Attention extends State<Attention>{
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10.h,),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     Text(
                       "このアプリを楽しんで遊んでもらうために",
                       style: TextStyle(
@@ -57,7 +64,9 @@ class _Attention extends State<Attention>{
                       textAlign: TextAlign.center,
                       textScaleFactor: 1.3,
                     ),
-                    SizedBox(height: 10.h,),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     Text(
                       "過度な飲酒を控えて、適度な量とペースで飲みましょう。",
                       style: TextStyle(
@@ -67,7 +76,9 @@ class _Attention extends State<Attention>{
                       textAlign: TextAlign.center,
                       textScaleFactor: 1.3,
                     ),
-                    SizedBox(height: 10.h,),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     Text(
                       "また、店内で遊ぶ場合は",
                       style: TextStyle(
@@ -77,7 +88,9 @@ class _Attention extends State<Attention>{
                       textAlign: TextAlign.center,
                       textScaleFactor: 1.3,
                     ),
-                    SizedBox(height: 10.h,),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     Text(
                       "他のお客様やお店側の迷惑にならないようにしましょう。",
                       style: TextStyle(
@@ -87,7 +100,9 @@ class _Attention extends State<Attention>{
                       textAlign: TextAlign.center,
                       textScaleFactor: 1.3,
                     ),
-                    SizedBox(height: 30.h,),
+                    SizedBox(
+                      height: 30.h,
+                    ),
                     Text(
                       "*このアプリによるトラブルや問題については当社は一切責任を負いません。",
                       style: TextStyle(
@@ -99,7 +114,9 @@ class _Attention extends State<Attention>{
                   ],
                 ),
               ),
-              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 20.h,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -110,16 +127,16 @@ class _Attention extends State<Attention>{
                         borderRadius: BorderRadius.circular(5.sp),
                       ),
                     ),
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.pop(context);
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.sp),
-                        color: Colors.white
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-                      child:Center(
+                          borderRadius: BorderRadius.circular(5.sp),
+                          color: Colors.white),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.h, horizontal: 20.w),
+                      child: Center(
                         child: Text(
                           "戻る",
                           style: TextStyle(
@@ -131,7 +148,9 @@ class _Attention extends State<Attention>{
                       ),
                     ),
                   ),
-                  SizedBox(width: 20.w,),
+                  SizedBox(
+                    width: 20.w,
+                  ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.all(0),
@@ -139,23 +158,26 @@ class _Attention extends State<Attention>{
                         borderRadius: BorderRadius.circular(5.sp),
                       ),
                     ),
-                    onPressed: (){
+                    onPressed: () {
                       // Navigator.pop(context,Bu)
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MemberSelectScreen()));
                     },
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.h, horizontal: 20.w),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5.sp),
-                        gradient:
-                        LinearGradient(
-                          colors: <Color>[
-                            Color(0xff43BBEF),
-                            Color(0xffA1C7D7),
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        )
-                      ),
+                          borderRadius: BorderRadius.circular(5.sp),
+                          gradient: LinearGradient(
+                            colors: <Color>[
+                              Color(0xff43BBEF),
+                              Color(0xffA1C7D7),
+                            ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                          )),
                       child: Center(
                         child: BorderedText(
                           strokeWidth: 3.0.sp,
@@ -163,16 +185,18 @@ class _Attention extends State<Attention>{
                           child: Text(
                             "次へ",
                             style: TextStyle(
-                            fontSize: 8.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              fontSize: 8.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: 50.w,),
+                  SizedBox(
+                    width: 50.w,
+                  ),
                 ],
               )
             ],
@@ -181,5 +205,4 @@ class _Attention extends State<Attention>{
       ),
     );
   }
-
 }

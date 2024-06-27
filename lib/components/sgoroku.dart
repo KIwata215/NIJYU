@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nijyu/components/event_dialog.dart';
+import 'package:nijyu/components/player_info.dart';
 import 'package:nijyu/constants/events.dart';
 import 'package:nijyu/providers/player_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:nijyu/constants/times.dart';
 
 class SugorokuGame extends StatefulWidget {
   const SugorokuGame({super.key});
@@ -16,14 +18,24 @@ class _SugorokuGameState extends State<SugorokuGame> {
   int _diceRoll = 1; // サイコロの目
   bool _isRolling = false; // サイコロ回転フラグ
   Timer? _timer; // サイコロを止めるまでランダムに変更するためのタイマー
-  bool _showDialogAfterAnimation = false;
+
+  void showEventDialog(BuildContext context, int position) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return EventDialog(position: position);
+      },
+    );
+  }
 
   // サイコロの目をランダムに変更するタイマーを開始
   void _startRolling() {
     setState(() {
       _isRolling = true; // サイコロ回転中フラグ
     });
-    _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+    _timer = Timer.periodic(
+        const Duration(milliseconds: AnimationTimes.sugorokuAnimationMillis),
+        (timer) {
       setState(() {
         _diceRoll = (1 + (DateTime.now().millisecondsSinceEpoch % 6)).toInt();
       });
@@ -38,8 +50,11 @@ class _SugorokuGameState extends State<SugorokuGame> {
       Provider.of<MoveMathProvider>(context, listen: false)
           .moveBoard(_diceRoll);
       Provider.of<PlayerProvider>(context, listen: false).movePlayer(_diceRoll);
-      _showEventDialog(
-          Provider.of<PlayerProvider>(context, listen: false).position);
+      Future.delayed(
+          Duration(milliseconds: AnimationTimes.animationDurationMillis), () {
+        _showEventDialog(
+            Provider.of<PlayerProvider>(context, listen: false).position);
+      });
       print('サイコロの目: $_diceRoll'); // サイコロの値を出力
     });
   }
