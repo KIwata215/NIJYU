@@ -9,7 +9,7 @@ class PlayerInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 70,
       width: double.infinity,
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
@@ -18,7 +18,7 @@ class PlayerInfo extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          '${player.name}: ${player.score}点',
+          '${player.name}: ${player.score}点 残り${player.remainingMath}マス',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,

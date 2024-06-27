@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/components/move_math.dart';
+import 'package:nijyu/components/player_info.dart';
 import 'package:nijyu/components/sgoroku.dart';
 import 'package:nijyu/constants/player.dart';
 import 'package:nijyu/providers/player_provider.dart';
@@ -54,7 +55,9 @@ class MoveMathScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final players = Provider.of<PlayerProvider>(context).players;
+    final playerProvider = Provider.of<PlayerProvider>(context);
+    final players = playerProvider.players;
+    final currentPlayer = playerProvider.currentPlayer;
     return Scaffold(
       body: Row(children: [
         Expanded(
@@ -65,8 +68,23 @@ class MoveMathScreen extends StatelessWidget {
         //   mainAxisAlignment: MainAxisAlignment.center,
         //   children: [
         Expanded(
-          flex: 3,
+          flex: 2,
           child: SugorokuGame(),
+        ),
+        Expanded(
+          flex: 1,
+          child: Column(
+            children: [
+              Text(
+                '現在のプレイヤー: ${currentPlayer.name}',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              ...players.map((player) => PlayerInfo(player: player)).toList(),
+            ],
+          ),
         ),
         // Text(
         //   "参加人数: ${players.length}",

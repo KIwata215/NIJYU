@@ -19,15 +19,6 @@ class _SugorokuGameState extends State<SugorokuGame> {
   bool _isRolling = false; // サイコロ回転フラグ
   Timer? _timer; // サイコロを止めるまでランダムに変更するためのタイマー
 
-  void showEventDialog(BuildContext context, int position) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return EventDialog(position: position);
-      },
-    );
-  }
-
   // サイコロの目をランダムに変更するタイマーを開始
   void _startRolling() {
     setState(() {
@@ -55,6 +46,9 @@ class _SugorokuGameState extends State<SugorokuGame> {
         _showEventDialog(
             Provider.of<PlayerProvider>(context, listen: false).position);
       });
+      // イベント表示が終わったら次のプレイヤーにターンを進める
+      Provider.of<PlayerProvider>(context, listen: false).nextPlayer();
+
       print('サイコロの目: $_diceRoll'); // サイコロの値を出力
     });
   }
