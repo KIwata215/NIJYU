@@ -42,28 +42,10 @@ class _MoveMathState extends State<MoveMath>
     // アニメーションを滑らかに
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        // if (_showDialogAfterAnimation) {
-        //   _showDialogAfterAnimation = false;
-        //   _showEventDialog(
-        //       Provider.of<PlayerProvider>(context, listen: false).position);
-        // }
         _controller.reset();
       }
     });
   }
-
-  // void showEventDialogAfterAnimation() {
-  //   _showDialogAfterAnimation = true;
-  // }
-
-  // void _showEventDialog(int position) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return EventDialog(position: position);
-  //     },
-  //   );
-  // }
 
   @override
   void dispose() {
@@ -110,8 +92,7 @@ class _MoveMathState extends State<MoveMath>
                                 child: Container(
                                   width: width,
                                   height: height,
-                                  color: Colors.primaries[
-                                      index % Colors.primaries.length],
+                                  color: Colors.blue,
                                 ),
                               ),
                               SizedBox(height: 15),
