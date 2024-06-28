@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/constants/player.dart';
 
 class PlayerInfo extends StatelessWidget {
   final Player player;
+  final bool isCurrentPlayer;
 
-  PlayerInfo({required this.player});
+  PlayerInfo({required this.player, this.isCurrentPlayer = false});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 70,
       width: double.infinity,
-      margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
         color: Colors.yellow,
       ),
       child: Center(

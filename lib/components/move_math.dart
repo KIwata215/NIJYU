@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:nijyu/components/event_dialog.dart';
+import 'package:nijyu/constants/colors.dart';
 import 'package:nijyu/constants/times.dart';
 import 'package:nijyu/providers/player_provider.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +17,6 @@ class _MoveMathState extends State<MoveMath>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _positionAnimation;
-  bool _showDialogAfterAnimation = false;
 
   @override
   void initState() {
@@ -113,7 +112,7 @@ class _MoveMathState extends State<MoveMath>
                 child: Container(
                   height: 600, // 縦線の高さを指定
                   width: 200, // 縦線の太さを指定
-                  color: Colors.white,
+                  color: colors.sugorokuBackgroundNavy,
                 ),
               ),
             ),
@@ -125,7 +124,7 @@ class _MoveMathState extends State<MoveMath>
                 child: Container(
                   height: 600, // 縦線の高さを指定
                   width: 200, // 縦線の太さを指定
-                  color: Colors.white,
+                  color: colors.sugorokuBackgroundNavy,
                 ),
               ),
             ),
@@ -133,7 +132,7 @@ class _MoveMathState extends State<MoveMath>
               top: 50, // 画像の高さの半分だけずらして中央に配置
               left: -150, // 画像の幅の半分だけずらして中央に配置
               child: Image.asset(
-                'assets/dice_images/vector.png', // あなたの画像のパス
+                'assets/dice_images/backHuman.png', // あなたの画像のパス
                 width: 650,
                 height: 650,
               ),
