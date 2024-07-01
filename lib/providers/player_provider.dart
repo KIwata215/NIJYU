@@ -9,8 +9,8 @@ class PlayerProvider with ChangeNotifier {
   void movePlayer(int steps) {
     _position += steps;
     // マスの最後
-    if (_position >= 30) {
-      _position = 29; // ボードの最後の位置に固定
+    if (_position > 30) {
+      _position = 30; // ボードの最後の位置に固定
     }
     print('現在の進んだマス：$_position');
     notifyListeners(); // 状態変更をリスナーに通知
