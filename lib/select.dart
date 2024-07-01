@@ -42,7 +42,7 @@ class _SelectPage extends State<SelectPage> {
       // Storeが押されている場合の処理
       Navigator.push(
         context,MaterialPageRoute(
-          builder: (context) => Attention()));
+          builder: (context) => const Attention()));
       print('お店でワイワイが選択されました。');
     }
   }
@@ -51,7 +51,7 @@ class _SelectPage extends State<SelectPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: <Color>[
             Color(0xff8C2388),
@@ -175,7 +175,7 @@ class _SelectPage extends State<SelectPage> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -185,7 +185,7 @@ class _SelectPage extends State<SelectPage> {
                       padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
                       decoration: BoxDecoration(
                         gradient: (_isTappedHome || _isTappedStore)
-                        ?LinearGradient(
+                        ? const LinearGradient(
                           colors: <Color>[
                             Color(0xff43BBEF),
                             Color(0xffA1C7D7),
@@ -195,7 +195,7 @@ class _SelectPage extends State<SelectPage> {
                         ) :null,
                         color: !_isTappedHome && !_isTappedStore ?
                         Colors.white: null,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                       child: Center(
                         child: BorderedText(
