@@ -11,13 +11,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Register2Page(),
+    const designSize = Size(393, 852);
+    return ScreenUtilInit(
+      //元となる画面サイズ（iphone15)
+      designSize: designSize,
+      minTextAdapt: true,
+      splitScreenMode: true,
+
+      builder: (_, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const Register2Page(),
+        );
+      },
     );
   }
 }
