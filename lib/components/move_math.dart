@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:nijyu/components/event_dialog.dart';
+import 'package:nijyu/constants/colors.dart';
+import 'package:nijyu/constants/times.dart';
 import 'package:nijyu/providers/player_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,13 +17,13 @@ class _MoveMathState extends State<MoveMath>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _positionAnimation;
-  bool _showDialogAfterAnimation = false;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(milliseconds: 3000), // 3秒かけて動かす
+      duration: Duration(
+          milliseconds: AnimationTimes.animationDurationMillis), // 3秒かけて動かす
       vsync: this,
     );
 
@@ -40,28 +41,10 @@ class _MoveMathState extends State<MoveMath>
     // アニメーションを滑らかに
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        // if (_showDialogAfterAnimation) {
-        //   _showDialogAfterAnimation = false;
-        //   _showEventDialog(
-        //       Provider.of<PlayerProvider>(context, listen: false).position);
-        // }
         _controller.reset();
       }
     });
   }
-
-  // void showEventDialogAfterAnimation() {
-  //   _showDialogAfterAnimation = true;
-  // }
-
-  // void _showEventDialog(int position) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return EventDialog(position: position);
-  //     },
-  //   );
-  // }
 
   @override
   void dispose() {
@@ -108,8 +91,7 @@ class _MoveMathState extends State<MoveMath>
                                 child: Container(
                                   width: width,
                                   height: height,
-                                  color: Colors.primaries[
-                                      index % Colors.primaries.length],
+                                  color: Colors.blue,
                                 ),
                               ),
                               SizedBox(height: 15),
@@ -130,7 +112,7 @@ class _MoveMathState extends State<MoveMath>
                 child: Container(
                   height: 600, // 縦線の高さを指定
                   width: 200, // 縦線の太さを指定
-                  color: Colors.white,
+                  color: colors.sugorokuBackgroundNavy,
                 ),
               ),
             ),
@@ -142,7 +124,7 @@ class _MoveMathState extends State<MoveMath>
                 child: Container(
                   height: 600, // 縦線の高さを指定
                   width: 200, // 縦線の太さを指定
-                  color: Colors.white,
+                  color: colors.sugorokuBackgroundNavy,
                 ),
               ),
             ),
@@ -150,7 +132,7 @@ class _MoveMathState extends State<MoveMath>
               top: 50, // 画像の高さの半分だけずらして中央に配置
               left: -150, // 画像の幅の半分だけずらして中央に配置
               child: Image.asset(
-                'assets/dice_images/vector.png', // あなたの画像のパス
+                'assets/dice_images/backHuman.png', // あなたの画像のパス
                 width: 650,
                 height: 650,
               ),

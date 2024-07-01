@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/components/move_math.dart';
+import 'package:nijyu/components/player_info.dart';
 import 'package:nijyu/components/sgoroku.dart';
+import 'package:nijyu/constants/player.dart';
 import 'package:nijyu/providers/player_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:nijyu/constants/colors.dart';
 
 void main() {
   //画面横向き固定
@@ -53,19 +56,70 @@ class MoveMathScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final playerProvider = Provider.of<PlayerProvider>(context);
+    final players = playerProvider.players;
+    final currentPlayer = playerProvider.currentPlayer;
     return Scaffold(
-      body: Row(
-        children: [
-          Expanded(
-            flex: 2,
-            child: MoveMath(),
+      backgroundColor: colors.sugorokuBackgroundNavy,
+      body: Row(children: [
+        Expanded(
+          flex: 2,
+          child: MoveMath(),
+        ),
+        // Column(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        Expanded(
+          flex: 2,
+          child: SugorokuGame(),
+        ),
+        Expanded(
+          flex: 1,
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.all(10.h),
+                child: Text(
+                  '現在のプレイヤー: ${currentPlayer.name}',
+                  style: TextStyle(
+                    fontSize: 8.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ...players.map((player) {
+                return Container(
+                  margin: EdgeInsets.symmetric(
+                      vertical: 5.h), // PlayerInfoの間にスペースを追加
+                  child: Stack(
+                    children: [
+                      PlayerInfo(player: player),
+                      if (player.name != currentPlayer.name)
+                        Positioned.fill(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.5),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(15),
+                                bottomLeft: Radius.circular(15),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ],
           ),
-          Expanded(
-            flex: 3,
-            child: SugorokuGame(),
-          ),
-        ],
-      ),
+        ),
+        // Text(
+        //   "参加人数: ${players.length}",
+        //   style: TextStyle(),
+        // )
+        //   ],
+        // ),
+      ]),
     );
   }
 }
