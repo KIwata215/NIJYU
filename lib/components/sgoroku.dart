@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nijyu/components/event_dialog.dart';
 import 'package:nijyu/components/player_info.dart';
+import 'package:bordered_text/bordered_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/constants/events.dart';
 import 'package:nijyu/providers/player_provider.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +81,25 @@ class _SugorokuGameState extends State<SugorokuGame> {
         children: [
           ElevatedButton(
             onPressed: _isRolling ? _stopRolling : _startRolling,
-            child: Text(_isRolling ? 'サイコロを止める' : 'サイコロを振る'),
+            child: BorderedText(
+              strokeWidth: 1.0.sp,
+              strokeColor: Colors.black,
+              child: Text(
+                _isRolling ? 'サイコロを止める' : 'サイコロを振る',
+                style: TextStyle(
+                  fontSize: 6.sp,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.orange[400], // ボタンの背景色
+              foregroundColor: Colors.white, // ボタンのテキスト色
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.zero
+              )
+            )
           ),
           SizedBox(height: 20),
           Image.asset('assets/dice_images/dice_$_diceRoll.jpg',
