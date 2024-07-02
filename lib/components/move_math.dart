@@ -89,10 +89,9 @@ class _MoveMathState extends State<MoveMath>
                               ClipPath(
                                 clipper: TrapezoidClipper(),
                                 child: Container(
-                                  width: width,
-                                  height: height,
-                                  color: Colors.blue,
-                                ),
+                                    width: width,
+                                    height: height,
+                                    color: Color(0xFFFFE86D)),
                               ),
                               SizedBox(height: 15),
                             ],
@@ -104,30 +103,30 @@ class _MoveMathState extends State<MoveMath>
                 );
               },
             ),
-            Positioned(
-              top: -20,
-              left: -170,
-              child: Transform.rotate(
-                angle: 5 * pi / 180,
-                child: Container(
-                  height: 600, // 縦線の高さを指定
-                  width: 200, // 縦線の太さを指定
-                  color: colors.sugorokuBackgroundNavy,
-                ),
-              ),
-            ),
-            Positioned(
-              top: -20,
-              left: 300,
-              child: Transform.rotate(
-                angle: -5 * pi / 180,
-                child: Container(
-                  height: 600, // 縦線の高さを指定
-                  width: 200, // 縦線の太さを指定
-                  color: colors.sugorokuBackgroundNavy,
-                ),
-              ),
-            ),
+            // Positioned(
+            //   top: -20,
+            //   left: -170,
+            //   child: Transform.rotate(
+            //     angle: 5 * pi / 180,
+            //     child: Container(
+            //       height: 600, // 縦線の高さを指定
+            //       width: 200, // 縦線の太さを指定
+            //       color: colors.sugorokuBackgroundNavy,
+            //     ),
+            //   ),
+            // ),
+            // Positioned(
+            //   top: -20,
+            //   left: 300,
+            //   child: Transform.rotate(
+            //     angle: -5 * pi / 180,
+            //     child: Container(
+            //       height: 600, // 縦線の高さを指定
+            //       width: 200, // 縦線の太さを指定
+            //       color: colors.sugorokuBackgroundNavy,
+            //     ),
+            //   ),
+            // ),
             Positioned(
               top: 50, // 画像の高さの半分だけずらして中央に配置
               left: -150, // 画像の幅の半分だけずらして中央に配置

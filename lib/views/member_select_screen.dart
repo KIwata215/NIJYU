@@ -16,8 +16,10 @@ class MemberSelectScreen extends StatefulWidget {
 
 class _MemberSelectScreen extends State<MemberSelectScreen> {
   int _selectedParticipants = 4;
-  List<Player> _players = List.generate(6,
-      (index) => Player(name: "", category: "", score: 0, remainingMath: 30));
+  List<Player> _players = List.generate(
+      6,
+      (index) => Player(
+          name: "", category: "", score: 0, remainingMath: 30, plusScore: 0));
 
   @override
   Widget build(BuildContext context) {
