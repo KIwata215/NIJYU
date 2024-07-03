@@ -15,11 +15,30 @@ class MemberSelectScreen extends StatefulWidget {
 
 class _MemberSelectScreen extends State<MemberSelectScreen> {
   int _selectedParticipants = 4;
+  // プレイヤーごとの色
+  final List<Color> playerColors = [
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+    Colors.purple,
+    Colors.orange,
+  ];
   List<Player> _players = List.generate(
       6,
       (index) => Player(
-          name: "", category: "", score: 0, remainingMath: 30, plusscore: 40));
+          name: "", category: "", score: 0, remainingMath: 30, plusScore: 40, color: Colors.transparent
+          ));
   
+@override
+  void initState() {
+    super.initState();
+    // プレイヤーに色を割り当てる
+    for (int i = 0; i < _players.length; i++) {
+      _players[i].color = playerColors[i % playerColors.length];
+    }
+  }
+
   //名前・カテゴリが入力されていないときに出す警告文字のフラグ
   bool _showWarning = false;
 
@@ -274,7 +293,7 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
             ),
           ),
           SizedBox(
-            width: 50.w,
+            width: 70.w,
             height: 50.h,
             child: DropdownButton<String>(
               items: const [
@@ -294,8 +313,20 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
                   child: Text('ビール'),
                 ),
                 DropdownMenuItem(
+                  value: '梅酒',
+                  child: Text('梅酒'),
+                ),
+                DropdownMenuItem(
+                  value: 'カシスオレンジ',
+                  child: Text('カシスオレンジ'),
+                ),
+                DropdownMenuItem(
                   value: 'ハイボール',
                   child: Text('ハイボール'),
+                ),
+                DropdownMenuItem(
+                  value: 'ワイン',
+                  child: Text('ワイン'),
                 ),
               ],
               value: _players[index].category,
