@@ -61,16 +61,7 @@ class MoveMathScreen extends StatelessWidget {
     final currentPlayer = playerProvider.currentPlayer;
     return Scaffold(
       backgroundColor: colors.sugorokuBackgroundNavy,
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                'assets/sugoroku_background_images/sugorokuBackground.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Row(
-          children: [
+      body: Row(children: [
             Expanded(
               flex: 2,
               child: MoveMath(),
