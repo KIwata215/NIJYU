@@ -10,4 +10,5 @@ class colors {
   static const textBlack = Color(0xFF000000); // 黒テキスト
   static const ruleBackgroundBeige = Color(0xFFFFF2C4);
   static const sugorokuBackgroundNavy = Color(0xFF172573);
+  static const playerInfo = Color(0xFFFF5D5D);
 }
