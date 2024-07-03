@@ -51,12 +51,48 @@ class TestApp extends StatelessWidget {
 
 //仮データ
 List<Player> ranking = [
-  Player(name: "岩田", category: "梅酒", score: 0, plusScore: 40, remainingMath: 0),
-  Player(name: "田中", category: "梅酒", score: 0, plusScore: 30, remainingMath: 0),
-  Player(name: "大窪", category: "梅酒", score: 0, plusScore: 20, remainingMath: 0),
-  Player(name: "神崎", category: "梅酒", score: 0, plusScore: 10, remainingMath: 0),
-  Player(name: "薛", category: "梅酒", score: 0, plusScore: 0, remainingMath: 0),
-  Player(name: "本村", category: "梅酒", score: 0, plusScore: 1, remainingMath: 0)
+  Player(
+      name: "岩田",
+      category: "梅酒",
+      score: 0,
+      plusScore: 40,
+      remainingMath: 0,
+      color: Colors.deepOrange),
+  Player(
+      name: "田中",
+      category: "梅酒",
+      score: 0,
+      plusScore: 30,
+      remainingMath: 0,
+      color: Colors.deepOrange),
+  Player(
+      name: "大窪",
+      category: "梅酒",
+      score: 0,
+      plusScore: 20,
+      remainingMath: 0,
+      color: Colors.deepOrange),
+  Player(
+      name: "神崎",
+      category: "梅酒",
+      score: 0,
+      plusScore: 10,
+      remainingMath: 0,
+      color: Colors.deepOrange),
+  Player(
+      name: "薛",
+      category: "梅酒",
+      score: 0,
+      plusScore: 0,
+      remainingMath: 0,
+      color: Colors.deepOrange),
+  Player(
+      name: "本村",
+      category: "梅酒",
+      score: 0,
+      plusScore: 1,
+      remainingMath: 0,
+      color: Colors.deepOrange)
 ];
 
 class Ranking_Past_Page extends StatefulWidget {

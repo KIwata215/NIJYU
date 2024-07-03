@@ -59,69 +59,74 @@ class MoveMathScreen extends StatelessWidget {
     final playerProvider = Provider.of<PlayerProvider>(context);
     final players = playerProvider.players;
     final currentPlayer = playerProvider.currentPlayer;
+
     return Scaffold(
       backgroundColor: colors.sugorokuBackgroundNavy,
       body: Container(
         decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage(
-              'assets/sugoroku_background_images/sugorokuBackground.png'),
-          fit: BoxFit.cover,
-        )),
-        child: Row(children: [
-          Expanded(
-            flex: 2,
-            child: MoveMath(),
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/sugoroku_background_images/sugorokuBackground.png'),
+            fit: BoxFit.cover,
           ),
-          // Column(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          Expanded(
-            flex: 2,
-            child: SugorokuGame(),
-          ),
-          Expanded(
-            flex: 1,
-            child: Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.all(10.h),
-                  child: Text(
-                    '現在のプレイヤー: ${currentPlayer.name}',
-                    style: TextStyle(
-                      color: colors.textWhite,
-                      fontSize: 8.sp,
-                      fontWeight: FontWeight.bold,
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 2,
+              child: MoveMath(),
+            ),
+            Expanded(
+              flex: 2,
+              child: SugorokuGame(),
+            ),
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10.h),
+                    child: Text(
+                      '現在のプレイヤー: ${currentPlayer.name}',
+                      style: TextStyle(
+                        color: colors.textWhite,
+                        fontSize: 8.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                ...players.map((player) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(
-                        vertical: 5.h), // PlayerInfoの間にスペースを追加
-                    child: Stack(
-                      children: [
-                        PlayerInfo(player: player),
-                        if (player.name != currentPlayer.name)
-                          Positioned.fill(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.5),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(11),
-                                  bottomLeft: Radius.circular(11),
+                  Expanded(
+                    child: ListView(
+                      padding: EdgeInsets.symmetric(vertical: 5.h),
+                      children: players.map((player) {
+                        return Container(
+                          margin: EdgeInsets.only(bottom: 5.h),
+                          child: Stack(
+                            children: [
+                              PlayerInfo(player: player),
+                              if (player.name != currentPlayer.name)
+                                Positioned.fill(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(0.5),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(11),
+                                        bottomLeft: Radius.circular(11),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
+                            ],
                           ),
-                      ],
+                        );
+                      }).toList(),
                     ),
-                  );
-                }).toList(),
-              ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }
