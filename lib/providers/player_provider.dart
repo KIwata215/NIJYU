@@ -19,11 +19,7 @@ class PlayerProvider with ChangeNotifier {
 
   void updatePlayerPosition(int steps) {
     // 現在のプレイヤーの位置を更新するロジックを追加
-    _players[_currentPlayerIndex].remainingMath -= steps; // 残りマス数
-    _players[_currentPlayerIndex].position += steps; // 現在のマス
-    if (_players[_currentPlayerIndex].position > 30) {
-      _players[_currentPlayerIndex].position = 30; // ボードの最後の位置に固定
-    }
+    _players[_currentPlayerIndex].remainingMath -= steps;
     notifyListeners();
   }
 

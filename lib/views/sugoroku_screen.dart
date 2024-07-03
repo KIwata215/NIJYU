@@ -59,7 +59,6 @@ class MoveMathScreen extends StatelessWidget {
     final playerProvider = Provider.of<PlayerProvider>(context);
     final players = playerProvider.players;
     final currentPlayer = playerProvider.currentPlayer;
-
     return Scaffold(
       backgroundColor: colors.sugorokuBackgroundNavy,
       body: Container(
