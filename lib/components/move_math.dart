@@ -54,6 +54,10 @@ class _MoveMathState extends State<MoveMath>
 
   @override
   Widget build(BuildContext context) {
+    final playerProvider = Provider.of<PlayerProvider>(context);
+    final currentPlayer = playerProvider.currentPlayer;
+// デバッグ用に currentPlayer.playerImages を出力して値を確認する
+    print("Current Player Images: ${currentPlayer.playerImages}");
     return Consumer<MoveMathProvider>(
       builder: (context, moveMathProvider, child) {
         double newPosition =
@@ -89,10 +93,9 @@ class _MoveMathState extends State<MoveMath>
                               ClipPath(
                                 clipper: TrapezoidClipper(),
                                 child: Container(
-                                  width: width,
-                                  height: height,
-                                  color: Colors.blue,
-                                ),
+                                    width: width,
+                                    height: height,
+                                    color: Color(0xFFFFE86D).withOpacity(0.7)),
                               ),
                               SizedBox(height: 15),
                             ],
@@ -118,7 +121,7 @@ class _MoveMathState extends State<MoveMath>
             ),
             Positioned(
               top: -20,
-              left: 300,
+              left: 285,
               child: Transform.rotate(
                 angle: -5 * pi / 180,
                 child: Container(
@@ -129,12 +132,12 @@ class _MoveMathState extends State<MoveMath>
               ),
             ),
             Positioned(
-              top: 50, // 画像の高さの半分だけずらして中央に配置
-              left: -150, // 画像の幅の半分だけずらして中央に配置
+              top: -80.h, // 画像の高さの半分だけずらして中央に配置
+              left: -260.w, // 画像の幅の半分だけずらして中央に配置
               child: Image.asset(
-                'assets/dice_images/backHuman.png', // あなたの画像のパス
-                width: 650,
-                height: 650,
+                currentPlayer.playerImages, // あなたの画像のパス
+                width: 650.w,
+                height: 650.h,
               ),
             ),
           ],

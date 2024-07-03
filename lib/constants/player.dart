@@ -8,7 +8,8 @@ class Player {
   int remainingMath; // 残りマス数
   int plusScore;
   int position; // 場所
-  Color color = colors.playerInfo;
+  Color color;
+  String playerImages;
 
   Player({
     required this.name,
@@ -18,5 +19,6 @@ class Player {
     required this.plusScore,
     this.position = 0,
     required this.color,
+    required this.playerImages,
   });
 }

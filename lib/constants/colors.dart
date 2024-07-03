@@ -9,5 +9,11 @@ class colors {
   static const textWhite = Color(0xFFFFFFFF); // 白テキスト
   static const textBlack = Color(0xFF000000); // 黒テキスト
   static const ruleBackgroundBeige = Color(0xFFFFF2C4);
-  static const sugorokuBackgroundNavy = Color(0xFF172573);
+  static const sugorokuBackgroundNavy = Color(0xFF192047);
+  static const playerColor1 = Color(0xFFF44336);
+  static const playerColor2 = Color(0xFFE91E63);
+  static const playerColor3 = Color(0xFF9C27B0);
+  static const playerColor4 = Color(0xFF673AB7);
+  static const playerColor5 = Color(0xFF3F51B5);
+  static const playerColor6 = Color(0xFF2196F3);
 }

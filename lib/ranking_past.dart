@@ -48,19 +48,22 @@ class TestApp extends StatelessWidget {
     );
   }
 }
+
 //仮データ
-List<Player>ranking =[
-  Player(name: "岩田", category: "梅酒", score: 0,plusscore: 40, remainingMath: 0),
-  Player(name: "田中", category: "梅酒", score: 0,plusscore: 30, remainingMath: 0),
-  Player(name: "大窪", category: "梅酒", score: 0, plusscore: 20,remainingMath: 0),
-  Player(name: "神崎", category: "梅酒", score: 0,plusscore: 10, remainingMath: 0),
-  Player(name: "薛", category: "梅酒", score: 0,plusscore: 0, remainingMath: 0),
-  Player(name: "本村", category: "梅酒", score: 0,plusscore: 1, remainingMath: 0)
+List<Player> ranking = [
+  // Player(name: "岩田", category: "梅酒", score: 0, plusScore: 40, remainingMath: 0),
+  // Player(name: "田中", category: "梅酒", score: 0, plusScore: 30, remainingMath: 0),
+  // Player(name: "大窪", category: "梅酒", score: 0, plusScore: 20, remainingMath: 0),
+  // Player(name: "神崎", category: "梅酒", score: 0, plusScore: 10, remainingMath: 0),
+  // Player(name: "薛", category: "梅酒", score: 0, plusScore: 0, remainingMath: 0),
+  // Player(name: "本村", category: "梅酒", score: 0, plusScore: 1, remainingMath: 0)
 ];
-class Ranking_Past_Page extends StatefulWidget{
+
+class Ranking_Past_Page extends StatefulWidget {
   State<StatefulWidget> createState() => _Ranking_Past_Page();
 }
-class _Ranking_Past_Page extends State<Ranking_Past_Page>{
+
+class _Ranking_Past_Page extends State<Ranking_Past_Page> {
   @override
   Widget build(BuildContext context) {
     // スコア順にソート
@@ -79,124 +82,131 @@ class _Ranking_Past_Page extends State<Ranking_Past_Page>{
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body:Stack(
-          children: [
-            Center(
-              child: Column(
-                children: [
-                  Image.asset("assets/images/ previousranking.png"),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: ranking.length,
-                      itemBuilder: (context, index) {
-                        final player = ranking[index];
-                        String  imagePath ='assets/images/number1.png';
-                        //順位に応じた画像のimageパスを設定
-                        if(index==1){
-                          imagePath = 'assets/images/number2.png';
-                        }else if(index ==2){
-                          imagePath ='assets/images/number3.png';
-                        }else if(index ==3){
-                          imagePath ='assets/images/number4.png';
-                        }else if(index ==4){
-                          imagePath ='assets/images/number5.png';
-                        }else if(index ==5){  
-                          imagePath ='assets/images/number6.png';
-                        }
-                        return Container(
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+          backgroundColor: Colors.transparent,
+          body: Stack(
+            children: [
+              Center(
+                child: Column(
+                  children: [
+                    Image.asset("assets/images/ previousranking.png"),
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: ranking.length,
+                          itemBuilder: (context, index) {
+                            final player = ranking[index];
+                            String imagePath = 'assets/images/number1.png';
+                            //順位に応じた画像のimageパスを設定
+                            if (index == 1) {
+                              imagePath = 'assets/images/number2.png';
+                            } else if (index == 2) {
+                              imagePath = 'assets/images/number3.png';
+                            } else if (index == 3) {
+                              imagePath = 'assets/images/number4.png';
+                            } else if (index == 4) {
+                              imagePath = 'assets/images/number5.png';
+                            } else if (index == 5) {
+                              imagePath = 'assets/images/number6.png';
+                            }
+                            return Container(
+                              child: Column(
                                 children: [
-                                  Image.asset(
-                                    imagePath,
-                                    width: 40.w,
-                                    height: 65.h,
-                                  ),
-                                  Container(
-                                    width: 120.w,
-                                    height: 60.h,
-                                    decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(25.r),
-                                    ),
-                                    child: Column(
-                                      children: [
-                                        Row(
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        imagePath,
+                                        width: 40.w,
+                                        height: 65.h,
+                                      ),
+                                      Container(
+                                        width: 120.w,
+                                        height: 60.h,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(25.r),
+                                        ),
+                                        child: Column(
                                           children: [
-                                            SizedBox(width: 20.w),
-                                            Text(
-                                              player.name,
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 7.sp,
-                                              ),
+                                            Row(
+                                              children: [
+                                                SizedBox(width: 20.w),
+                                                Text(
+                                                  player.name,
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 7.sp,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
+                                            SizedBox(
+                                              height: 2.h,
+                                            ),
+                                            DottedDivider(),
+                                            SizedBox(
+                                              height: 5.h,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  width: 20.w,
+                                                ),
+                                                Text(
+                                                  '${player.score}Pt',
+                                                  style: TextStyle(
+                                                      fontSize: 5.sp,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ],
+                                            )
                                           ],
                                         ),
-                                        SizedBox(height: 2.h,),
-                                        DottedDivider(),
-                                        SizedBox(height: 5.h,),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            SizedBox(width: 20.w,),
-                                            Text(
-                                              '${player.score}Pt',
-                                              style: TextStyle(
-                                                fontSize: 5.sp,
-                                                fontWeight: FontWeight.bold
-                                              ),
-                                            ),
-                                            
-                                          ],
-                                        )
-                                      ],
-                                    ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 10.h,),  
-                            ],
-                          ),
-                        );
-                      }
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                bottom: 20.h,
+                right: 20.w,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Ranking_Now_Page()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.r),
                     ),
                   ),
-                ],
-              ),
-            ),
-            Positioned(
-              bottom: 20.h,
-              right: 20.w,
-              child: ElevatedButton(
-                onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Ranking_Now_Page())
-                  );
-                }, 
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.r),
-                  ),
-                ),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-                    decoration:  BoxDecoration(
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+                    decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: <Color>[
-                          Color(0xff43BBEF),
-                          Color(0xffA1C7D7),
-                        ] ,
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter
-                      ),
+                          colors: <Color>[
+                            Color(0xff43BBEF),
+                            Color(0xffA1C7D7),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter),
                       borderRadius: BorderRadius.circular(10.r),
                     ),
                     child: Center(
@@ -213,12 +223,11 @@ class _Ranking_Past_Page extends State<Ranking_Past_Page>{
                         ),
                       ),
                     ),
+                  ),
                 ),
-              ),
-            )
-          ],
-        )
-      ),
+              )
+            ],
+          )),
     );
   }
 }

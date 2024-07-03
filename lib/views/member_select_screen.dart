@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bordered_text/bordered_text.dart';
+import 'package:nijyu/constants/colors.dart';
 import 'package:nijyu/constants/player.dart';
 import 'package:nijyu/providers/player_provider.dart';
 import 'package:nijyu/views/rule_screen.dart';
+import 'package:nijyu/views/sugoroku_screen.dart';
 import 'package:provider/provider.dart';
 
 class MemberSelectScreen extends StatefulWidget {
@@ -15,31 +17,52 @@ class MemberSelectScreen extends StatefulWidget {
 
 class _MemberSelectScreen extends State<MemberSelectScreen> {
   int _selectedParticipants = 4;
+
   // プレイヤーごとの色
   final List<Color> playerColors = [
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-    Colors.purple,
-    Colors.orange,
+    colors.playerColor1,
+    colors.playerColor2,
+    colors.playerColor3,
+    colors.playerColor4,
+    colors.playerColor5,
+    colors.playerColor6,
   ];
+
+  final List<String> playerImages = [
+    "assets/human_images/mingcute_walk-fill1.png",
+    "assets/human_images/mingcute_walk-fill2.png",
+    "assets/human_images/mingcute_walk-fill3.png",
+    "assets/human_images/mingcute_walk-fill4.png",
+    "assets/human_images/mingcute_walk-fill5.png",
+    "assets/human_images/mingcute_walk-fill6.png",
+  ];
+
   List<Player> _players = List.generate(
       6,
       (index) => Player(
-          name: "", category: "", score: 0, remainingMath: 30, plusScore: 40, color: Colors.transparent
+            name: "",
+            category: "",
+            score: 0,
+            remainingMath: 30,
+            plusScore: 0,
+            color: Colors.transparent,
+            playerImages: "assets/dice_images/backHuman.png",
           ));
-  
-@override
+
+  @override
   void initState() {
     super.initState();
     // プレイヤーに色を割り当てる
     for (int i = 0; i < _players.length; i++) {
       _players[i].color = playerColors[i % playerColors.length];
     }
+    // プレイヤーに画像を割り当てる
+    for (int i = 0; i < _players.length; i++) {
+      _players[i].playerImages = playerImages[i % playerImages.length];
+    }
   }
 
-  //名前・カテゴリが入力されていないときに出す警告文字のフラグ
+//名前・カテゴリが入力されていないときに出す警告文字のフラグ
   bool _showWarning = false;
 
 //カテゴリと名前が入力されているのかチェックしている
@@ -94,7 +117,6 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
               child: Center(
                 child: Column(
                   children: [
-                    
                     Container(
                       height: 70.h,
                       width: 160.w,
@@ -167,7 +189,6 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
                           style: TextStyle(color: Colors.red, fontSize: 10.sp),
                         ),
                       ),
-                    
                     Column(
                       children: [
                         Wrap(
@@ -182,7 +203,6 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
                         ),
                       ],
                     ),
-                    
                     Padding(
                       padding: EdgeInsets.only(right: 70.0),
                       child: Align(
@@ -193,7 +213,8 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
                           child: ElevatedButton(
                             onPressed: () {
                               if (_validateInputs()) {
-                                Provider.of<PlayerProvider>(context, listen: false)
+                                Provider.of<PlayerProvider>(context,
+                                        listen: false)
                                     .setPlayers(_players
                                         .take(_selectedParticipants)
                                         .toList());
@@ -216,32 +237,32 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
                               ),
                             ),
                             child: Container(
-                              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-                                decoration:  BoxDecoration(
-                                  gradient: LinearGradient(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 10.h, horizontal: 20.w),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
                                     colors: <Color>[
                                       Color(0xff43BBEF),
                                       Color(0xffA1C7D7),
-                                    ] ,
+                                    ],
                                     begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter
-                                  ),
-                                  borderRadius: BorderRadius.circular(10.r),
-                                ),
-                                child: Center(
-                                  child: BorderedText(
-                                    strokeWidth: 3.0.sp,
-                                    strokeColor: Colors.white,
-                                    child: Text(
-                                      '次へ',
-                                      style: TextStyle(
-                                        fontSize: 8.sp,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                    end: Alignment.bottomCenter),
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
+                              child: Center(
+                                child: BorderedText(
+                                  strokeWidth: 3.0.sp,
+                                  strokeColor: Colors.white,
+                                  child: Text(
+                                    '次へ',
+                                    style: TextStyle(
+                                      fontSize: 8.sp,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
+                              ),
                             ),
                           ),
                         ),
@@ -280,13 +301,11 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
                 filled: true,
                 fillColor: Colors.white,
                 border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(horizontal: 2.w), 
+                contentPadding: EdgeInsets.symmetric(horizontal: 2.w),
               ),
               maxLength: 8,
               textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 6.sp
-              ),
+              style: TextStyle(fontSize: 6.sp),
               onChanged: (value) {
                 _players[index].name = value;
               },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nijyu/constants/colors.dart';
 import 'package:nijyu/constants/player.dart';
 
 class PlayerInfo extends StatelessWidget {
@@ -11,20 +12,35 @@ class PlayerInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 75.h,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
-        color: Colors.yellow,
+        color: player.color,
       ),
       child: Center(
-        child: Text(
-          '${player.name}: ${player.score}点 残り${player.remainingMath}マス',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-            color: Colors.black,
+        child: RichText(
+          textAlign: TextAlign.left,
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: '${player.name}\n',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w700,
+                  color: colors.textWhite,
+                ),
+              ),
+              TextSpan(
+                text: '残り${player.remainingMath}マス   ${player.score}pt',
+                style: TextStyle(
+                  fontSize: 8.sp,
+                  fontWeight: FontWeight.w500,
+                  color: colors.textWhite,
+                ),
+              ),
+            ],
           ),
         ),
       ),
