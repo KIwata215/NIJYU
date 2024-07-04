@@ -82,7 +82,7 @@ class _Ranking_Now_Page extends State<Ranking_Now_Page> {
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 7.sp,
+                                                    fontSize: 9.sp,
                                                   ),
                                                 ),
                                               ],
@@ -92,7 +92,7 @@ class _Ranking_Now_Page extends State<Ranking_Now_Page> {
                                             ),
                                             DottedDivider(),
                                             SizedBox(
-                                              height: 5.h,
+                                              height: 2.h,
                                             ),
                                             Row(
                                               mainAxisAlignment:
@@ -104,14 +104,14 @@ class _Ranking_Now_Page extends State<Ranking_Now_Page> {
                                                 Text(
                                                   '${player.score}Pt+',
                                                   style: TextStyle(
-                                                      fontSize: 5.sp,
+                                                      fontSize: 6.sp,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
                                                 Text(
                                                   '${player.plusScore}Pt',
                                                   style: TextStyle(
-                                                    fontSize: 6.sp,
+                                                    fontSize: 6.5.sp,
                                                     fontWeight: FontWeight.bold,
                                                     color: Colors.red,
                                                   ),

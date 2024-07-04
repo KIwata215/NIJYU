@@ -86,14 +86,14 @@ class MoveMathScreen extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.all(10.h),
-                    child: Text(
-                      '現在のプレイヤー: ${currentPlayer.name}',
-                      style: TextStyle(
-                        color: colors.textWhite,
-                        fontSize: 8.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    // child: Text(
+                    //   '現在のプレイヤー: ${currentPlayer.name}',
+                    //   style: TextStyle(
+                    //     color: colors.textWhite,
+                    //     fontSize: 8.sp,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
                   ),
                   Expanded(
                     child: ListView(

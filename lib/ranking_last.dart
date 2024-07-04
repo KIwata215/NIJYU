@@ -82,7 +82,7 @@ class _Ranking_Last_Page extends State<Ranking_Last_Page> {
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 7.sp,
+                                                    fontSize: 9.sp,
                                                   ),
                                                 ),
                                               ],
@@ -92,7 +92,7 @@ class _Ranking_Last_Page extends State<Ranking_Last_Page> {
                                             ),
                                             DottedDivider(),
                                             SizedBox(
-                                              height: 5.h,
+                                              height: 1.h,
                                             ),
                                             Row(
                                               mainAxisAlignment:
@@ -104,7 +104,7 @@ class _Ranking_Last_Page extends State<Ranking_Last_Page> {
                                                 Text(
                                                   ('${player.score + player.plusScore}Pt'),
                                                   style: TextStyle(
-                                                      fontSize: 5.sp,
+                                                      fontSize: 6.5.sp,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color: Colors.red),

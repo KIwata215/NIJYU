@@ -51,10 +51,38 @@ class TestApp extends StatelessWidget {
 
 //仮データ
 List<Player> ranking = [
-  // Player(name: "岩田", category: "梅酒", score: 0, plusScore: 40, remainingMath: 0),
-  // Player(name: "田中", category: "梅酒", score: 0, plusScore: 30, remainingMath: 0),
-  // Player(name: "大窪", category: "梅酒", score: 0, plusScore: 20, remainingMath: 0),
-  // Player(name: "神崎", category: "梅酒", score: 0, plusScore: 10, remainingMath: 0),
+  Player(
+      name: "岩田",
+      category: "梅酒",
+      score: 240,
+      plusScore: 20,
+      remainingMath: 7,
+      color: Colors.transparent,
+      playerImages: ""),
+  Player(
+      name: "田中",
+      category: "梅酒",
+      score: 220,
+      plusScore: 30,
+      remainingMath: 9,
+      color: Colors.transparent,
+      playerImages: ""),
+  Player(
+      name: "大窪",
+      category: "梅酒",
+      score: 210,
+      plusScore: 10,
+      remainingMath: 10,
+      color: Colors.transparent,
+      playerImages: ""),
+  Player(
+      name: "神崎",
+      category: "梅酒",
+      score: 190,
+      plusScore: 40,
+      remainingMath: 0,
+      color: Colors.transparent,
+      playerImages: ""),
   // Player(name: "薛", category: "梅酒", score: 0, plusScore: 0, remainingMath: 0),
   // Player(name: "本村", category: "梅酒", score: 0, plusScore: 1, remainingMath: 0)
 ];
@@ -136,7 +164,7 @@ class _Ranking_Past_Page extends State<Ranking_Past_Page> {
                                                   style: TextStyle(
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize: 7.sp,
+                                                    fontSize: 9.sp,
                                                   ),
                                                 ),
                                               ],
@@ -146,7 +174,7 @@ class _Ranking_Past_Page extends State<Ranking_Past_Page> {
                                             ),
                                             DottedDivider(),
                                             SizedBox(
-                                              height: 5.h,
+                                              height: 1.h,
                                             ),
                                             Row(
                                               mainAxisAlignment:
@@ -158,7 +186,7 @@ class _Ranking_Past_Page extends State<Ranking_Past_Page> {
                                                 Text(
                                                   '${player.score}Pt',
                                                   style: TextStyle(
-                                                      fontSize: 5.sp,
+                                                      fontSize: 6.5.sp,
                                                       fontWeight:
                                                           FontWeight.bold),
                                                 ),
