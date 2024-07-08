@@ -38,19 +38,27 @@ class _DifficultyPageState extends State<DifficultyPage> {
         'assets/images/easy1.jpg',
         'assets/images/easy2.jpg',
         'assets/images/easy3.jpg',
-      ],
-      'NORMAL': [
         'assets/images/normal1.jpg',
         'assets/images/normal2.jpg',
-        'assets/images/normal3.jpg',
-      ],
-      'HARD': [
-        'assets/images/hard1.jpg',
+        'assets/images/normal3.jpg','assets/images/hard1.jpg',
         'assets/images/hard2.jpg',
         'assets/images/hard3.jpg',
       ],
+      // 'NORMAL': [
+      //   'assets/images/normal1.jpg',
+      //   'assets/images/normal2.jpg',
+      //   'assets/images/normal3.jpg',
+      // ],
+      // 'HARD': [
+      //   'assets/images/hard1.jpg',
+      //   'assets/images/hard2.jpg',
+      //   'assets/images/hard3.jpg',
+      // ],
     };
 
+    List<bool> _mapSelect = [
+      false,false,false,false,false,false,false,false,false   //画像9枚分
+    ];
 
     void _selectDifficulty(String difficulty) {
       setState(() {
@@ -175,7 +183,7 @@ class _DifficultyPageState extends State<DifficultyPage> {
                   // autoPlayCurve: Curves.fastOutSlowIn,
                   enableInfiniteScroll: true,
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
-              ),
+                ),
               items: _difficultyImages[_selectedDifficulty]!
                   .map((item) => Container(
                         child: Center(
@@ -189,70 +197,98 @@ class _DifficultyPageState extends State<DifficultyPage> {
               ),
             ),
             SizedBox(height: 20.h,),
+
+            Text('$_mapSelect'),
+
             SizedBox(
               height: 60.h,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue[900],
-                  borderRadius: BorderRadius.circular(50)
-                ),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(width: 10.w,),
-                    Text(
-                        '難易度',
-                        style: TextStyle(
-                          fontSize: 8.sp,
-                          color: Colors.white, // テキストの色
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(3, (index) {
-                        final difficulties = ['EASY', 'NORMAL', 'HARD'];
-                        return GestureDetector(
-                          onTap: () {
+                  children: List.generate(_mapSelect.length, (index) {
+                    return Row(
+                      children: [
+                        Checkbox(
+                          value: _mapSelect[index],
+                          onChanged: (bool? value) {
                             setState(() {
-                              _selectedDifficulty = difficulties[index];
+                              _mapSelect[index] = value ?? false;
                             });
                           },
-                          child: Container(
-                            width: 40.w,
-                            height: 60.h,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: _selectedDifficulty == difficulties[index] ? Colors.yellow : Colors.transparent,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              '${difficulties[index]}',
-                              style: TextStyle(
-                                fontSize: _selectedDifficulty == difficulties[index] ? 8.sp : 6.sp,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                shadows: _selectedDifficulty == difficulties[index]
-                                    ? [
-                                        Shadow(
-                                          offset: Offset(1.0, 1.0),
-                                          blurRadius: 3.0,
-                                          color: Colors.black,
-                                        ),
-                                      ]
-                                    : null,
-                              ),
-                            ),
-                          ),
-                        );
-                      }),
-                    ),
-                  ],
+                        ),
+                        Text('Item ${index + 1}'),
+                      ],
+                    );
+                  },
+                  )
                 ),
               ),
             ),
+
+            // SizedBox(
+            //   height: 60.h,
+            //   child: Container(
+            //     decoration: BoxDecoration(
+            //       color: Colors.blue[900],
+            //       borderRadius: BorderRadius.circular(50)
+            //     ),
+            //     child: Row(
+            //       mainAxisSize: MainAxisSize.min,
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         SizedBox(width: 10.w,),
+            //         Text(
+            //             '難易度',
+            //             style: TextStyle(
+            //               fontSize: 8.sp,
+            //               color: Colors.white, // テキストの色
+            //               fontWeight: FontWeight.bold,
+            //             ),
+            //             textAlign: TextAlign.center,
+            //         ),
+            //         Row(
+            //           mainAxisAlignment: MainAxisAlignment.center,
+            //           children: List.generate(3, (index) {
+            //             final difficulties = ['EASY', 'NORMAL', 'HARD'];
+            //             return GestureDetector(
+            //               onTap: () {
+            //                 setState(() {
+            //                   _selectedDifficulty = difficulties[index];
+            //                 });
+            //               },
+            //               child: Container(
+            //                 width: 40.w,
+            //                 height: 60.h,
+            //                 alignment: Alignment.center,
+            //                 decoration: BoxDecoration(
+            //                   color: _selectedDifficulty == difficulties[index] ? Colors.yellow : Colors.transparent,
+            //                   borderRadius: BorderRadius.circular(20),
+            //                 ),
+            //                 child: Text(
+            //                   '${difficulties[index]}',
+            //                   style: TextStyle(
+            //                     fontSize: _selectedDifficulty == difficulties[index] ? 8.sp : 6.sp,
+            //                     color: Colors.white,
+            //                     fontWeight: FontWeight.bold,
+            //                     shadows: _selectedDifficulty == difficulties[index]
+            //                         ? [
+            //                             Shadow(
+            //                               offset: Offset(1.0, 1.0),
+            //                               blurRadius: 3.0,
+            //                               color: Colors.black,
+            //                             ),
+            //                           ]
+            //                         : null,
+            //                   ),
+            //                 ),
+            //               ),
+            //             );
+            //           }),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: EdgeInsets.only(right: 70.0), //画面右からのパディング
               child: Align(
