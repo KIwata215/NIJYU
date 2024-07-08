@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:nijyu/constants/colors.dart';
 import 'package:nijyu/constants/player.dart';
-import 'package:nijyu/providers/player_provider.dart';
+import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:nijyu/views/rule_screen.dart';
 import 'package:nijyu/views/sugoroku_screen.dart';
 import 'package:provider/provider.dart';

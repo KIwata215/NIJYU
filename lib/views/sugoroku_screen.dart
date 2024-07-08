@@ -5,7 +5,7 @@ import 'package:nijyu/components/move_math.dart';
 import 'package:nijyu/components/player_info.dart';
 import 'package:nijyu/components/sgoroku.dart';
 import 'package:nijyu/constants/player.dart';
-import 'package:nijyu/providers/player_provider.dart';
+import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:nijyu/constants/colors.dart';
 

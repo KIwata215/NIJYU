@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:nijyu/constants/colors.dart';
 import 'package:nijyu/constants/times.dart';
-import 'package:nijyu/providers/player_provider.dart';
+import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

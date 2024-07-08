@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/components/dott_divider.dart';
 import 'package:nijyu/constants/player.dart';
-import 'package:nijyu/providers/player_provider.dart';
+import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:nijyu/ranking_now.dart';
 import 'package:provider/provider.dart';
 import 'package:bordered_text/bordered_text.dart';
@@ -83,8 +83,6 @@ List<Player> ranking = [
       remainingMath: 0,
       color: Colors.transparent,
       playerImages: ""),
-  // Player(name: "薛", category: "梅酒", score: 0, plusScore: 0, remainingMath: 0),
-  // Player(name: "本村", category: "梅酒", score: 0, plusScore: 1, remainingMath: 0)
 ];
 
 class Ranking_Past_Page extends StatefulWidget {
