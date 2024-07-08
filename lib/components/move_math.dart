@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:nijyu/constants/colors.dart';
 import 'package:nijyu/constants/times.dart';
-import 'package:nijyu/providers/player_provider.dart';
+import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,6 +17,7 @@ class _MoveMathState extends State<MoveMath>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _positionAnimation;
+  bool _isAnimationCompleted = false; // マスアニメーション管理フラグ
 
   @override
   void initState() {
@@ -56,7 +57,7 @@ class _MoveMathState extends State<MoveMath>
   Widget build(BuildContext context) {
     final playerProvider = Provider.of<PlayerProvider>(context);
     final currentPlayer = playerProvider.currentPlayer;
-// デバッグ用に currentPlayer.playerImages を出力して値を確認する
+    // デバッグ用に currentPlayer.playerImages を出力して値を確認する
     print("Current Player Images: ${currentPlayer.playerImages}");
     return Consumer<MoveMathProvider>(
       builder: (context, moveMathProvider, child) {
@@ -71,7 +72,15 @@ class _MoveMathState extends State<MoveMath>
             curve: Curves.easeInOut,
           ),
         );
-        _controller.forward();
+
+        // アニメーションが完了していない場合にのみアニメーションを実行
+        if (!_isAnimationCompleted) {
+          print('マスが動きます');
+          _controller.forward();
+          _isAnimationCompleted = true;
+        } else {
+          _isAnimationCompleted = false;
+        }
 
         return Stack(
           children: [

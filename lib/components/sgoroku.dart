@@ -4,7 +4,7 @@ import 'package:nijyu/components/event_dialog.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/constants/events.dart';
-import 'package:nijyu/providers/player_provider.dart';
+import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:nijyu/constants/times.dart';
 
