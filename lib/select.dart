@@ -14,6 +14,7 @@ class _SelectPage extends State<SelectPage> {
   //home・storeimageのボタンが押されたときflag
   bool _isTappedHome = false;
   bool _isTappedStore = false;
+  int flag =0;
 
   void _onTapHome() {
     setState(() {
@@ -34,15 +35,18 @@ class _SelectPage extends State<SelectPage> {
       // 両方が押されていない場合の処理
       print('いずれかのオプションを選択してください。');
     } else if (_isTappedHome) {
-      // Navigator.push(
-      //   context,MaterialPageRoute(
-      //     builder: (context) => Attention()));
+      flag =0;
+      
+      Navigator.push(
+        context,MaterialPageRoute(
+          builder: (context) => Attention(flag:flag)));
       
     } else if (_isTappedStore) {
       // Storeが押されている場合の処理
+      flag =1;
       Navigator.push(
         context,MaterialPageRoute(
-          builder: (context) => const Attention()));
+          builder: (context) =>  Attention(flag:flag)));
       print('お店でワイワイが選択されました。');
     }
   }
@@ -168,7 +172,6 @@ class _SelectPage extends State<SelectPage> {
                   ),
                 ),
               ),
-
               Padding(padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
