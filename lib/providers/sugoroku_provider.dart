@@ -78,3 +78,48 @@ class MoveMathProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+// ラウンド管理
+class RoundProvider with ChangeNotifier {
+  int _currentRound = 1; // 現在のラウンド
+  int _totalRounds = 0; // 指定ラウンド数
+  int _playerCount; // プレイヤーの数
+  late List<List<int>> _roundScores; // プレイヤーごとのスコア保存2次元配列
+  late List<bool> _selectedMaps = []; // 選択ラウンド数配列
+
+  RoundProvider(this._totalRounds, this._playerCount, int mapCount) {
+    _roundScores = List.generate(_totalRounds,
+        (_) => List.filled(_playerCount, 0)); // 各ラウンドごとにプレイヤーのスコアを初期化
+    _selectedMaps = List.filled(mapCount, false); // 各マップの選択状態を初期化
+  }
+
+  int get currentRound => _currentRound; // 現在のラウンドを取得
+  int get totalRounds => _totalRounds; // 指定ラウンド数を取得
+  List<List<int>> get roundScores => _roundScores; // プレイヤーごとのスコア取得
+  List<bool> get totalRoundsArray => _selectedMaps; // 選択ラウンド数配列取得
+
+  // 次のラウンド
+  void nextRound() {
+    // 現在のラウンドが最終ラウンドに達していない場合
+    if (_currentRound < _totalRounds) {
+      _currentRound++;
+      notifyListeners();
+    }
+  }
+
+  // プレイヤーのスコアを現在のラウンドのスコアに更新
+  void updatePlayerScore(int playerIndex, int score) {
+    if (_currentRound > 0 && _currentRound <= _totalRounds) {
+      _roundScores[_currentRound - 1][playerIndex] += score;
+      notifyListeners();
+    }
+  }
+
+  // マップの選択状態更新
+  void selectMap(int index, bool isSelected) {
+    if (index >= 0 && index < _selectedMaps.length) {
+      _selectedMaps[index] = isSelected;
+      notifyListeners();
+    }
+  }
+}
