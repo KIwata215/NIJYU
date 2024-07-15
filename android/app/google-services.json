@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "603717884011",
+    "firebase_url": "https://nijyu-a1e04-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "nijyu-a1e04",
+    "storage_bucket": "nijyu-a1e04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603717884011:android:15d4864b543f41ecccf92e",
+        "android_client_info": {
+          "package_name": "com.example.nijyu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603717884011-v7bj0cnqvctvb09b1tf1lgf8841flohm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd6pmDCFGGVZIAPad4qUWEweApW5-2aEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603717884011-v7bj0cnqvctvb09b1tf1lgf8841flohm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "603717884011-nilm288sej9t1mli6ni8o9p3ugtpbi04.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nijyu"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

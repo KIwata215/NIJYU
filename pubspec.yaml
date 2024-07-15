@@ -42,6 +42,8 @@ dependencies:
   freezed_annotation: ^2.4.2
   json_annotation: ^4.9.0
   mobile_scanner: ^4.0.1
+  qr_flutter: ^4.1.0
+  firebase_database: ^10.4.0
 
 dev_dependencies:
   bordered_text: ^2.0.0
