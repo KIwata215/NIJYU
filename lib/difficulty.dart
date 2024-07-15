@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:nijyu/constants/colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,9 +57,15 @@ class _DifficultyPageState extends State<DifficultyPage> {
       // ],
     };
 
-    List<bool> _mapSelect = [
-      false,false,false,false,false,false,false,false,false   //画像9枚分
-    ];
+    List<bool> _isChecked = List<bool>.filled(9, false);
+
+    int _countSelected() {
+      return _isChecked.where((item) => item).length;
+    }
+
+    // List<bool> _mapSelect = [
+    //   false,false,false,false,false,false,false,false,false   //画像9枚分
+    // ];
 
     void _selectDifficulty(String difficulty) {
       setState(() {
@@ -69,6 +76,9 @@ class _DifficultyPageState extends State<DifficultyPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> items = _difficultyImages[_selectedDifficulty]!;
+    int _maxSelection = _selectedGameRound;
+    int _selectedCount = 0;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -177,46 +187,76 @@ class _DifficultyPageState extends State<DifficultyPage> {
                 options: CarouselOptions(
                   height: 450.0.h,
                   viewportFraction: 0.5,
-                  // autoPlay: true,
                   enlargeCenterPage: true,
                   aspectRatio: 4/3,
-                  // autoPlayCurve: Curves.fastOutSlowIn,
                   enableInfiniteScroll: true,
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
                 ),
-              items: _difficultyImages[_selectedDifficulty]!
-                  .map((item) => Container(
-                        child: Center(
-                            child: Image.asset(
+              items: items.asMap().entries.map((entry) {
+                  int index = entry.key;
+                  String item = entry.value;
+                  return Container(
+                    child: Stack(
+                      children: <Widget>[
+                        Image.asset(
                           item,
                           fit: BoxFit.cover,
                           width: 1000,
-                        )),
-                      ))
-                  .toList(),
+                        ),
+                        Positioned(
+                          bottom: 20,
+                          left: 20,
+                          child: Text(
+                            'マップ ${index + 1}', // インデックス + 1を表示
+                            style: TextStyle(
+                              fontSize: 24,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              backgroundColor: Colors.black54,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 10,
+                          right: 10,
+                          child: Icon(
+                            _isChecked[index] ? Icons.check_circle_outline : null,
+                            color: Colors.blue[700],
+                            size: 60.h,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
               ),
             ),
             SizedBox(height: 20.h,),
-
-            Text('$_mapSelect'),
 
             SizedBox(
               height: 60.h,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  children: List.generate(_mapSelect.length, (index) {
+                  children: List.generate(_isChecked.length, (index) {
                     return Row(
                       children: [
                         Checkbox(
-                          value: _mapSelect[index],
+                          value:  _isChecked[index] == false && _countSelected() >= _selectedGameRound ? null 
+                                                                                                       : _isChecked[index],
+                          
+                          // value: null,
                           onChanged: (bool? value) {
                             setState(() {
-                              _mapSelect[index] = value ?? false;
+                              _isChecked[index] = value ?? false;
+                              _selectedCount = _isChecked.where((item) => item).length;
                             });
                           },
+                          tristate: true,
+                          fillColor: _isChecked[index] == false && _countSelected() >= _selectedGameRound ? MaterialStateProperty.resolveWith((states) => Colors.red[200])
+                                                                                                          : MaterialStateProperty.resolveWith((states) => Colors.blue[200]),
                         ),
-                        Text('Item ${index + 1}'),
+                        Text('マップ ${index + 1}｜'),
                       ],
                     );
                   },
@@ -225,6 +265,7 @@ class _DifficultyPageState extends State<DifficultyPage> {
               ),
             ),
 
+            //---------------難易度のコードここから---------------
             // SizedBox(
             //   height: 60.h,
             //   child: Container(
@@ -289,6 +330,8 @@ class _DifficultyPageState extends State<DifficultyPage> {
             //     ),
             //   ),
             // ),
+            //---------------難易度のコードここまで---------------
+
             Padding(
               padding: EdgeInsets.only(right: 70.0), //画面右からのパディング
               child: Align(
@@ -331,3 +374,15 @@ class _DifficultyPageState extends State<DifficultyPage> {
     );
   }
 }
+
+// Container(
+//   child: CheckboxListTile(
+//     secondary: Image.asset('assets/images/easy1.jpg'),
+//     value: _isChecked,
+//     onChanged: (bool? value) {
+//       setState(() {
+//         _isChecked = value ?? true;
+//       });
+//     },
+//   ),
+// ) 
