@@ -17,7 +17,7 @@ class _MoveMathState extends State<MoveMath>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _positionAnimation;
-  bool _isAnimationCompleted = false; // マスアニメーション管理フラグ
+  bool _isAnimationCompleted = true; // マスアニメーション管理フラグ
 
   @override
   void initState() {
@@ -79,6 +79,7 @@ class _MoveMathState extends State<MoveMath>
           _controller.forward();
           _isAnimationCompleted = true;
         } else {
+          print('マス動かない');
           _isAnimationCompleted = false;
         }
 

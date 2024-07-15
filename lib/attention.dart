@@ -4,14 +4,18 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:nijyu/views/member_select_screen.dart';
 
 class Attention extends StatefulWidget {
-  const Attention({super.key});
+  final int flag;
+  const Attention ({super.key, required this.flag});
   @override
   State<StatefulWidget> createState() => _Attention();
 }
 
 class _Attention extends State<Attention> {
+  
   @override
   Widget build(BuildContext context) {
+    //遷移する画面のフラグ
+    int flag = widget.flag;
     return Container(
       //背景のグラデーション処理
       decoration: BoxDecoration(
@@ -160,6 +164,11 @@ class _Attention extends State<Attention> {
                     ),
                     onPressed: () {
                       // Navigator.pop(context,Bu)
+                      if(flag == 0){
+
+                      }else{
+                        
+                      }
                       Navigator.push(
                           context,
                           MaterialPageRoute(

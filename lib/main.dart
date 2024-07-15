@@ -4,21 +4,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:nijyu/select.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  //画面横向き固定
+Future<void> main() async {
+   // 画面横向き固定
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(
-          [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight])
-      .then((_) {
-    runApp(MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => PlayerProvider()),
-        ChangeNotifierProvider(create: (context) => MoveMathProvider()),
-      ],
-      child: const MyApp(),
-    ));
-  });
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight],
+  );
+
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => PlayerProvider()),
+      ChangeNotifierProvider(create: (context) => MoveMathProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
