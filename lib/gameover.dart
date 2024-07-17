@@ -6,6 +6,10 @@ import 'package:bordered_text/bordered_text.dart';
 import 'package:nijyu/select.dart';
 
 class GameOver_Page extends StatelessWidget {
+  final Player winner;
+
+  GameOver_Page({required this.winner});
+
   @override
   Widget build(BuildContext context) {
     // 合計スコアでプレイヤーをソート
@@ -13,7 +17,7 @@ class GameOver_Page extends StatelessWidget {
         (a, b) => (b.score + b.plusScore).compareTo(a.score + a.plusScore));
 
     // 優勝者
-    Player winner = ranking.first;
+    //Player winner = ranking.first;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(

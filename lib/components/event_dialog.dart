@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nijyu/constants/events.dart';
+import 'package:nijyu/ranking_last.dart';
+import 'package:nijyu/ranking_past.dart';
 
 class EventDialog extends StatelessWidget {
   final int position;
@@ -9,13 +11,13 @@ class EventDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // int eventIndex = position;
-    int eventIndex = position >= 29 ? 29 : position;
+    int eventIndex = position >= Math.math - 1 ? Math.math - 1 : position;
     Event currentEvent = events[eventIndex];
-    String titleText = eventIndex == 29 ? 'ゴール！！！' : 'イベント発生！';
+    String titleText = eventIndex == Math.math - 1 ? 'ゴール！！！' : 'イベント発生！';
 
     return AlertDialog(
       title: Text(titleText),
-      icon: eventIndex == 29
+      icon: eventIndex == Math.math - 1
           ? Icon(null)
           : Icon(Icons.circle, //現在地がゴールマスならアイコンを表示しない、それ以外は〇アイコン表示
               color: currentEvent.category == '赤'
@@ -38,11 +40,21 @@ class EventDialog extends StatelessWidget {
                   ? const Color.fromARGB(255, 182, 255, 184)
                   : //緑マス
                   Colors.white,
-      content: Text(currentEvent.description),
+      content: eventIndex == Math.math - 1
+          ? Text('Congratulation!!!')
+          : Text(currentEvent.description),
       actions: [
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
+            if (eventIndex == Math.math - 1) {
+              // ゴールの場合はランキング画面に遷移
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => Ranking_Last_Page(),
+                ),
+              );
+            }
           },
           child: Text('閉じる'),
         ),
