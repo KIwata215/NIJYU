@@ -8,7 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-   // 画面横向き固定
+  // 画面横向き固定
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -21,6 +21,7 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider(create: (context) => PlayerProvider()),
       ChangeNotifierProvider(create: (context) => MoveMathProvider()),
+      ChangeNotifierProvider(create: (context) => RoundProvider()),
     ],
     child: const MyApp(),
   ));

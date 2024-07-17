@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bordered_text/bordered_text.dart';
 import 'package:nijyu/constants/colors.dart';
+import 'package:nijyu/constants/events.dart';
 import 'package:nijyu/constants/player.dart';
+import 'package:nijyu/difficulty.dart';
 import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:nijyu/views/rule_screen.dart';
 import 'package:nijyu/views/sugoroku_screen.dart';
@@ -43,7 +45,7 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
             name: "",
             category: "",
             score: 0,
-            remainingMath: 30,
+            remainingMath: Math.math,
             plusScore: 0,
             color: Colors.transparent,
             playerImages: "assets/dice_images/backHuman.png",
@@ -218,10 +220,14 @@ class _MemberSelectScreen extends State<MemberSelectScreen> {
                                     .setPlayers(_players
                                         .take(_selectedParticipants)
                                         .toList());
+                                Provider.of<RoundProvider>(context,
+                                        listen: false)
+                                    .setPlayerCount(_selectedParticipants);
+                                print('参加人数：${_selectedParticipants}');
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => RuleScreen(),
+                                    builder: (context) => DifficultyPage(),
                                   ),
                                 );
                               } else {

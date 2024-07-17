@@ -23,9 +23,12 @@ class PlayerProvider with ChangeNotifier {
   void updatePlayerPosition(int steps) {
     // 現在のプレイヤーの位置を更新するロジックを追加
     _players[_currentPlayerIndex].remainingMath -= steps; // 残りマス数
+    if (_players[_currentPlayerIndex].remainingMath <= 0) {
+      _players[_currentPlayerIndex].remainingMath = 0;
+    }
     _players[_currentPlayerIndex].position += steps; // 現在のマス
-    if (_players[_currentPlayerIndex].position > 30) {
-      _players[_currentPlayerIndex].position = 30; // ボードの最後の位置に固定
+    if (_players[_currentPlayerIndex].position > Math.math) {
+      _players[_currentPlayerIndex].position = Math.math; // ボードの最後の位置に固定
     }
     updateScore();
     notifyListeners();
@@ -36,7 +39,7 @@ class PlayerProvider with ChangeNotifier {
     final int easy = 10;
     final int nomal = 20;
     final int hard = 30;
-    if (_players[_currentPlayerIndex].position < 30) {
+    if (_players[_currentPlayerIndex].position < Math.math) {
       final event = events[_players[_currentPlayerIndex].position];
 
       switch (event.category) {
@@ -61,6 +64,13 @@ class PlayerProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  // プレイヤーをスコアでソートしたリストを取得
+  List<Player> getSortedPlayersByScore() {
+    List<Player> sortedPlayers = List.from(_players);
+    sortedPlayers.sort((a, b) => b.score.compareTo(a.score));
+    return sortedPlayers;
+  }
+
   void movePlayer(int steps) {
     updatePlayerPosition(steps);
     notifyListeners(); // 状態変更をリスナーに通知
@@ -83,28 +93,50 @@ class MoveMathProvider with ChangeNotifier {
 class RoundProvider with ChangeNotifier {
   int _currentRound = 1; // 現在のラウンド
   int _totalRounds = 0; // 指定ラウンド数
-  int _playerCount; // プレイヤーの数
+  int _playerCount = 0; // プレイヤーの数
   late List<List<int>> _roundScores; // プレイヤーごとのスコア保存2次元配列
   late List<bool> _selectedMaps = []; // 選択ラウンド数配列
 
-  RoundProvider(this._totalRounds, this._playerCount, int mapCount) {
-    _roundScores = List.generate(_totalRounds,
-        (_) => List.filled(_playerCount, 0)); // 各ラウンドごとにプレイヤーのスコアを初期化
-    _selectedMaps = List.filled(mapCount, false); // 各マップの選択状態を初期化
-  }
+  // RoundProvider(this._totalRounds, this._playerCount, int mapCount) {
+  //   _roundScores = List.generate(_totalRounds,
+  //       (_) => List.filled(_playerCount, 0)); // 各ラウンドごとにプレイヤーのスコアを初期化
+  //   _selectedMaps = List.filled(mapCount, false); // 各マップの選択状態を初期化
+  // }
 
   int get currentRound => _currentRound; // 現在のラウンドを取得
   int get totalRounds => _totalRounds; // 指定ラウンド数を取得
+  int get playerCount => _playerCount; // プレイヤー人数
   List<List<int>> get roundScores => _roundScores; // プレイヤーごとのスコア取得
   List<bool> get totalRoundsArray => _selectedMaps; // 選択ラウンド数配列取得
+
+  // ゲームラウンド数取得
+  void setGameRound(int rounds) {
+    _totalRounds = rounds;
+    notifyListeners();
+  }
+
+  // 選択ラウンド取得
+  void setSelectMaps(List<bool> Maps) {
+    _selectedMaps = Maps;
+    notifyListeners();
+  }
+
+  // プレイヤー人数取得
+  void setPlayerCount(int players) {
+    _playerCount = players;
+    _selectedMaps = List.filled(_totalRounds, false); // 各マップの選択状態を初期化
+    notifyListeners();
+  }
 
   // 次のラウンド
   void nextRound() {
     // 現在のラウンドが最終ラウンドに達していない場合
     if (_currentRound < _totalRounds) {
+      _roundScores = List.generate(_totalRounds,
+          (_) => List.filled(_playerCount, 0)); // 各ラウンドごとにプレイヤーのスコアを初期化
       _currentRound++;
-      notifyListeners();
     }
+    notifyListeners();
   }
 
   // プレイヤーのスコアを現在のラウンドのスコアに更新
