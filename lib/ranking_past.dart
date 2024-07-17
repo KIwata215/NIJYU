@@ -8,6 +8,10 @@ import 'package:nijyu/ranking_now.dart';
 import 'package:provider/provider.dart';
 import 'package:bordered_text/bordered_text.dart';
 
+// lastが、何ゲームもした時の統計のランキング
+// nowが現在のランキング
+// pastが１ゲーム前のランキング
+
 void main() {
   //画面横向き固定
   WidgetsFlutterBinding.ensureInitialized();
@@ -114,7 +118,7 @@ class _Ranking_Past_Page extends State<Ranking_Past_Page> {
               Center(
                 child: Column(
                   children: [
-                    Image.asset("assets/images/ previousranking.png"),
+                    Image.asset("assets/images/previousranking.png"),
                     Expanded(
                       child: ListView.builder(
                           itemCount: ranking.length,

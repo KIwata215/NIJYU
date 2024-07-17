@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nijyu/components/dott_divider.dart';
+import 'package:nijyu/constants/player.dart';
 import 'package:nijyu/gameover.dart';
+import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:nijyu/ranking_past.dart';
 import 'package:bordered_text/bordered_text.dart';
+import 'package:provider/provider.dart';
 
 class Ranking_Last_Page extends StatefulWidget {
   State<StatefulWidget> createState() => _Ranking_Last_Page();
@@ -13,8 +16,13 @@ class _Ranking_Last_Page extends State<Ranking_Last_Page> {
   @override
   Widget build(BuildContext context) {
     // スコア順にソート (score + plusscore)
-    ranking.sort(
+    final PlayerProvider playerProvider = Provider.of<PlayerProvider>(context);
+
+    // ソートされたプレイヤーリストを取得
+    List<Player> sortedPlayers = playerProvider.getSortedPlayersByScore();
+    sortedPlayers.sort(
         (a, b) => (b.score + b.plusScore).compareTo(a.score + a.plusScore));
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -37,11 +45,11 @@ class _Ranking_Last_Page extends State<Ranking_Last_Page> {
                     Image.asset("assets/images/lastranking.png"),
                     Expanded(
                       child: ListView.builder(
-                          itemCount: ranking.length,
+                          itemCount: sortedPlayers.length,
                           itemBuilder: (context, index) {
-                            final player = ranking[index];
+                            final player = sortedPlayers[index];
                             String imagePath = 'assets/images/number1.png';
-                            //順位に応じた画像のimageパスを設定
+                            // 順位に応じた画像のimageパスを設定
                             if (index == 1) {
                               imagePath = 'assets/images/number2.png';
                             } else if (index == 2) {
@@ -102,7 +110,7 @@ class _Ranking_Last_Page extends State<Ranking_Last_Page> {
                                                   width: 20.w,
                                                 ),
                                                 Text(
-                                                  ('${player.score + player.plusScore}Pt'),
+                                                  ('${player.score}Pt'),
                                                   style: TextStyle(
                                                       fontSize: 6.5.sp,
                                                       fontWeight:
@@ -135,7 +143,9 @@ class _Ranking_Last_Page extends State<Ranking_Last_Page> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => GameOver_Page()));
+                            builder: (context) => GameOver_Page(
+                                  winner: sortedPlayers.first,
+                                )));
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.all(0),
