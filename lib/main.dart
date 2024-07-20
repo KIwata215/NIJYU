@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nijyu/home.dart';
 import 'package:nijyu/providers/sugoroku_provider.dart';
 import 'package:nijyu/select.dart';
 import 'package:provider/provider.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             useMaterial3: true,
           ),
-          home: SelectPage(),
+          home: Home(),
           title: 'LoginPage',
         );
       },
