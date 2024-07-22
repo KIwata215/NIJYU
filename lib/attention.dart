@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:bordered_text/bordered_text.dart';
+import 'package:nijyu/qrcode.dart';
 import 'package:nijyu/views/member_select_screen.dart';
 
 class Attention extends StatefulWidget {
@@ -163,16 +164,21 @@ class _Attention extends State<Attention> {
                       ),
                     ),
                     onPressed: () {
-                      // Navigator.pop(context,Bu)
+                      //家で遊ぶ時
                       if(flag == 0){
-
-                      }else{
-                        
-                      }
-                      Navigator.push(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => MemberSelectScreen()));
+                      }
+                      //お店で遊ぶ時
+                      else if(flag ==1){
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => QRcodePage()));
+                      }
+                      
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(
