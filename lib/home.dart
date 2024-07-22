@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nijyu/profile.dart';
 import 'package:nijyu/select.dart';
 
 class Home extends StatefulWidget {
@@ -132,7 +133,13 @@ class AccountButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.r), // Containerと同じ角丸に設定
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context, MaterialPageRoute(
+              builder :(context) => Profile()
+            )
+          );
+        },
         child: Column(
           children: [
             SizedBox(height: 10.h, width: 10.w),

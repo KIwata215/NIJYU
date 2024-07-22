@@ -14,7 +14,9 @@ class _SelectPage extends State<SelectPage> {
   //home・storeimageのボタンが押されたときflag
   bool _isTappedHome = false;
   bool _isTappedStore = false;
-  int flag =0;
+  //お店でお遊ぶか家で遊ぶかのflag
+  //０だった時は家・1だった時はお店
+  int flag = 0;
 
   void _onTapHome() {
     setState(() {
@@ -29,28 +31,27 @@ class _SelectPage extends State<SelectPage> {
       if (_isTappedStore) _isTappedHome = false;
     });
   }
-   void _handleNextButtonPressed() {
-    if (!_isTappedHome && !_isTappedStore) {
 
+  void _handleNextButtonPressed() {
+    if (!_isTappedHome && !_isTappedStore) {
       // 両方が押されていない場合の処理
       print('いずれかのオプションを選択してください。');
     } else if (_isTappedHome) {
-      flag =0;
-      
+      flag = 0;
       Navigator.push(
-        context,MaterialPageRoute(
-          builder: (context) => Attention(flag:flag)));
-      
+        context,
+        MaterialPageRoute(builder: (context) => Attention(flag: flag)),
+      );
     } else if (_isTappedStore) {
       // Storeが押されている場合の処理
-      flag =1;
+      flag = 1;
       Navigator.push(
-        context,MaterialPageRoute(
-          builder: (context) =>  Attention(flag:flag)));
+        context,
+        MaterialPageRoute(builder: (context) => Attention(flag: flag)),
+      );
       print('お店でワイワイが選択されました。');
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +70,9 @@ class _SelectPage extends State<SelectPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent, // 背景色を透明にする
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60.0.h),
+          preferredSize: Size.fromHeight(50.0.h),
           child: Padding(
-            padding: EdgeInsets.only(top: 30.h),
+            padding: EdgeInsets.only(top: 10.h),
             child: AppBar(
               backgroundColor: Colors.transparent, // 背景色を透明にする
               title: BorderedText(
@@ -92,7 +93,6 @@ class _SelectPage extends State<SelectPage> {
         body: Center(
           child: Column(
             children: [
-              // Padding(padding: EdgeInsets.only(top: 10.h)),
               Row(
                 children: [
                   Padding(padding: EdgeInsets.only(left: 75.w)),
@@ -104,9 +104,12 @@ class _SelectPage extends State<SelectPage> {
                           margin: EdgeInsets.all(5.h),
                           padding: EdgeInsets.all(5.h),
                           decoration: BoxDecoration(
-                            border: _isTappedHome ?
-                            Border.all(color:Colors.white ,width: 1.w,)
-                            :null
+                            border: _isTappedHome
+                                ? Border.all(
+                                    color: Colors.white,
+                                    width: 1.w,
+                                  )
+                                : null,
                           ),
                           child: Image.asset("assets/images/homeicon.png"),
                         ),
@@ -134,9 +137,12 @@ class _SelectPage extends State<SelectPage> {
                           margin: EdgeInsets.all(5.h),
                           padding: EdgeInsets.all(5.h),
                           decoration: BoxDecoration(
-                            border: _isTappedStore ?
-                            Border.all(color:Colors.white ,width: 1.w,)
-                            :null
+                            border: _isTappedStore
+                                ? Border.all(
+                                    color: Colors.white,
+                                    width: 1.w,
+                                  )
+                                : null,
                           ),
                           child: Image.asset("assets/images/storeicon.png"),
                         ),
@@ -158,8 +164,8 @@ class _SelectPage extends State<SelectPage> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(top: 5.h),
-                child:BorderedText(
+                padding: EdgeInsets.only(top: 0.h),
+                child: BorderedText(
                   strokeWidth: 3.0.sp,
                   strokeColor: Colors.black,
                   child: Text(
@@ -172,52 +178,57 @@ class _SelectPage extends State<SelectPage> {
                   ),
                 ),
               ),
-              Padding(padding: EdgeInsets.symmetric(horizontal: 30.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.all(0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    onPressed:_handleNextButtonPressed,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-                      decoration: BoxDecoration(
-                        gradient: (_isTappedHome || _isTappedStore)
-                        ? const LinearGradient(
-                          colors: <Color>[
-                            Color(0xff43BBEF),
-                            Color(0xffA1C7D7),
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ) :null,
-                        color: !_isTappedHome && !_isTappedStore ?
-                        Colors.white: null,
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                      child: Center(
-                        child: BorderedText(
-                          strokeWidth: 3.0.sp,
-                          strokeColor: Colors.white,
-                          child: Text(
-                            '次へ',
-                            style: TextStyle(
-                              fontSize: 8.sp,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.w),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.all(0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: _handleNextButtonPressed,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          decoration: BoxDecoration(
+                            gradient: (_isTappedHome || _isTappedStore)
+                                ? const LinearGradient(
+                                    colors: <Color>[
+                                      Color(0xff43BBEF),
+                                      Color(0xffA1C7D7),
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                  )
+                                : null,
+                            color: !_isTappedHome && !_isTappedStore
+                                ? Colors.white
+                                : null,
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                          child: Center(
+                            child: BorderedText(
+                              strokeWidth: 3.0.sp,
+                              strokeColor: Colors.white,
+                              child: Text(
+                                '次へ',
+                                style: TextStyle(
+                                  fontSize: 8.sp,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),  
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
               ),
             ],
           ),
