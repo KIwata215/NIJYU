@@ -27,9 +27,9 @@ class Loginpage extends State<Login> {
       ),
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(140.0.h),
+          preferredSize: Size.fromHeight(120.0.h),
           child: Padding(
-            padding: EdgeInsets.only(top: 100.0.h),
+            padding: EdgeInsets.only(top: 30.0.h),
             child: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -39,6 +39,7 @@ class Loginpage extends State<Login> {
                 Navigator.pop(context);
               },
             ),
+            centerTitle: true,
             title: BorderedText(
                 strokeWidth: 3.0.sp, // 縁の太さ
                 strokeColor: Colors.black, // 縁の色
