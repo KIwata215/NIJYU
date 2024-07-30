@@ -6,8 +6,20 @@ import 'package:nijyu/test_nextPage.dart';
 
 
 class Sign_Up3 extends StatefulWidget{
+  final String name;
+  final String email;
+  final String telephone;
+  final String password;
+  final String dateofbirth;
 
-  const Sign_Up3({Key? key}) : super(key: key);
+  const Sign_Up3({
+    Key? key, 
+    required this.name, 
+    required this.email, 
+    required this.telephone, 
+    required this.password, 
+    required this.dateofbirth
+    }) : super(key: key);
 State<Sign_Up3> createState() => _Sign_up3(); 
 }
 class _Sign_up3 extends State<Sign_Up3> {

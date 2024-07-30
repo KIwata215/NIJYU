@@ -8,8 +8,16 @@ import 'package:nijyu/validator/password_validator.dart';
 import 'package:nijyu/validator/required_validator.dart';
 
 class Sign_Up2 extends StatefulWidget{
+  final String name;
+  final String email;
+  final String telephone;
 
-  const Sign_Up2({Key? key}) : super(key: key);
+   Sign_Up2({
+    Key? key, 
+    required this.name, 
+    required this.email, 
+    required this.telephone
+    }) : super(key: key);
 State<Sign_Up2> createState() => _Sign_up2(); 
 }
 class _Sign_up2 extends State<Sign_Up2> {
@@ -32,7 +40,6 @@ class _Sign_up2 extends State<Sign_Up2> {
   //入力する名前
   String _password = '';
   String _password2 = '';
-  String _date_of_birth = '';
 
 
   //名前のバリデーションの結果
@@ -176,8 +183,20 @@ class _Sign_up2 extends State<Sign_Up2> {
                     ),
                     onPressed: _isAllValid()
                     ? () {
+                      print(widget.name);
+                      print(widget.email);
+                      print(widget.telephone);
+                      print(_password);
+                      print(_password2);
+                      print(date_of_birthcontroller.text);
                       Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => Sign_Up3()));
+                        builder: (context) => Sign_Up3(
+                          name: widget.name, 
+                          email: widget.email, 
+                          telephone: widget.telephone, 
+                          password: _password, 
+                          dateofbirth: date_of_birthcontroller.text,
+                        )));
                     } : null,
                     child: BorderedText(
                       child: Text(

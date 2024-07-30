@@ -198,8 +198,15 @@ class _Sign_up1 extends State<Sign_Up1> {
                     ),
                     onPressed: _isAllValid()
                     ? () {
+                      print(_name);
+                      print(_email);
+                      print(_telephone);
                       Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => Sign_Up2()));
+                        builder: (context) => Sign_Up2(
+                          name: _name,
+                          email: _email,
+                          telephone: _telephone,
+                        )));
                     } : null,
                     child: BorderedText(
                       child: Text(
