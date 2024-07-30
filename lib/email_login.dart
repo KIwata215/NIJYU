@@ -3,18 +3,63 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import "package:bordered_text/bordered_text.dart";
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:nijyu/login.dart';
-import 'package:nijyu/test_nextPage.dart';
-
+import 'package:nijyu/component/textformfield.dart';
+import 'package:nijyu/validator/email_validator.dart';
+import 'package:nijyu/validator/password_validator.dart';
+import 'package:nijyu/validator/required_validator.dart';
 
 class EmailLoginPage extends StatefulWidget {
-  const EmailLoginPage({super.key});
+  const EmailLoginPage ({ Key? key}) : super(key: key);
 
   @override
   State<EmailLoginPage> createState() => _EmailLoginPage();
 }
 
 class _EmailLoginPage extends State<EmailLoginPage> {
+  //入力されたメールアドレス
+  String newEmail ='';
+  //入力されたパスワード
+  String newPassword = '';
+  
+  //メールアドレスのバリデーションチェック
+  bool _isValidEmail = false;
+
+  //入力されたパスワードのバリデーションチェック
+  bool _isValidPassword = false;
+
+  //入力されたemailをステート保存
+  void _setEmail(String email){
+    setState(() {
+      newEmail = email;
+    });
+  }
+
+  //入力されたパスワードをステート保存
+  void _setPassword(String password){
+    setState(() {
+      newPassword = password;
+    });
+  } 
+  
+  //入力されたemailバリデーションチェック結果を保存
+  void _setIsValidEmail(bool isVaild){
+    setState(() {
+      _isValidEmail = isVaild;
+    });
+  }
+
+  //入力されたemailバリデーションチェック結果を保存
+  void _setIsValidPassword(bool isVaild){
+    setState(() {
+      _isValidPassword = isVaild;
+    });
+  }
+
+  //全てのバリデーションチェックの結果を返す
+  bool _isAllValid(){
+    return _isValidEmail && _isValidPassword;
+  }
+  
   final TextEditingController email_controller = TextEditingController();
   final TextEditingController password_controller = TextEditingController();
 
@@ -61,14 +106,17 @@ class _EmailLoginPage extends State<EmailLoginPage> {
           child:Padding(
             padding: EdgeInsets.only(top: 50.h),
             child:  AppBar(
+              
             title: 
-              Text(
+              BorderedText(
+                child: Text(
                 "メールアドレスでログイン",
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 12.sp,
                   color: Colors.white,
                 ),
               ),
+            ),
             centerTitle: true,
             backgroundColor: Colors.transparent,//背景色を透明にする
             elevation: 0,  //影をなくす,
@@ -90,22 +138,34 @@ class _EmailLoginPage extends State<EmailLoginPage> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 41.h, bottom: 20.h),
-                child: _TextFormField(
+                child: TextFormField_Component_Validator(
                 labelText: "メールアドレス", 
                 height: 45, 
                 width: 250, 
                 controller: email_controller, 
-                obscuretext: false,
+                obscuretext: false, 
+                validators: [
+                  RequiredValidator(),
+                  EmailValidator(),
+                ], 
+                onChage: _setEmail, 
+                setIsValid: _setIsValidEmail,
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only( bottom: 40.h),
-                child: _TextFormField(
+                child: TextFormField_Component_Validator(
                 labelText: "パスワード", 
                 height: 45, 
                 width: 250, 
                 controller: password_controller, 
-                obscuretext: false,
+                obscuretext: false, 
+                validators: [
+                  RequiredValidator(),
+                  PasswordValidator(),
+                ], 
+                setIsValid: _setIsValidPassword, 
+                onChage: _setPassword,
                 ),
               ),
               TextButton(
@@ -116,19 +176,21 @@ class _EmailLoginPage extends State<EmailLoginPage> {
                     borderRadius: BorderRadius.circular(10),
                   ) 
                 ),
-                child: Text(
+                child:BorderedText(
+                  child:  Text(
                   "ログイン",
-                  style: TextStyle(
-                    color: Colors.black,
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-                onPressed: () {
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EmailLoginPage()));
-                  },
-                
+                onPressed: _isAllValid() 
+                ? (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EmailLoginPage()));
+                }: null
               ),
             ],
           ),
@@ -140,52 +202,3 @@ class _EmailLoginPage extends State<EmailLoginPage> {
 
 
 
-class _TextFormField extends StatelessWidget {
-  final String labelText;
-  final double height;
-  final double width;
-  final TextEditingController controller;
-  final bool obscuretext;
-  _TextFormField(
-      {required this.labelText,
-      required this.height,
-      required this.width,
-      required this.controller,
-      required this.obscuretext
-      }
-  );
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          labelText,
-          style: TextStyle(
-            fontSize: 8.sp,
-            color: Colors.white
-          ),
-        ),
-        SizedBox(
-          height: 2.h,
-        ),
-        Container(
-          height: height.h, // 高さの変更
-          width: width.w, // 横幅の変更
-          child: TextFormField(
-            controller: controller,
-            obscureText: obscuretext,
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10) //外側の丸み
-                ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
