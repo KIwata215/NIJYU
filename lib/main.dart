@@ -2,8 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nijyu/Login.dart';
+import 'package:nijyu/component/textformfield.dart';
 import 'package:nijyu/firebase_options.dart';
+import 'package:nijyu/start.dart';
 
 
 void main() async {
@@ -36,8 +37,16 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme:ThemeData(
             useMaterial3: true,
+            //新規登録の際のTextFormFiledの処理
+            inputDecorationTheme: const InputDecorationTheme(
+            contentPadding: EdgeInsets.all(16),
+            focusedBorder: TextFormBorders.textFormFocusedBorder,
+            enabledBorder: TextFormBorders.textFormEnabledBorder,
+            focusedErrorBorder: TextFormBorders.textFormErrorBorder,
+            errorBorder: TextFormBorders.textFormErrorBorder,
+            ),
           ) ,
-          home: const MyHomePage(),
+          home: Start(),
           title: 'LoginPage',
         );
       },
