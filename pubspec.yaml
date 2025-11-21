@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_screenutil: ^5.9.3
   email_validator: ^3.0.0
+  google_fonts: ^6.3.2
 
 dev_dependencies:
   bordered_text: ^2.0.0
